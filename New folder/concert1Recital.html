@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styleConcert1Recital.css">
+
+    <script>    
+    function printSeats() {
+        for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 5; i++) {
+                document.write("<input id="seat-1" class="seat-select" type="checkbox" value="1" name="seat[]" />");
+            }
+        }
+    }
+    </script>
+
+
+</head>
+
+<body>
+    <div class=top>
+        <h2>Concert Ticketing System</h2>
+        <div class="row">
+            <div class="column">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="column">
+                <img src="rectangle.png" alt="icon" id="topIconRecital">
+            </div>
+        </div>
+    </div>
+    <div class="topnav">
+        <ul>
+            <li><a href="recital.html" >Recital</a></li>
+            <li><a href="threatical.html" >Threatical</a></li>
+            <li><a href="classical.html" >Classical</a></li>
+        </ul> 
+    </div>
+
+    <div class="title">
+        <h3>Concert 1</h3>
+    </div>
+
+    
+    <form id="reservation" method="post" action="test.php">
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <section id="seat">
+                        <input id="seat-1" class="seat-select" type="checkbox" value="1" name="seat[]" />
+                        <label for="seat-1" class="seat"></label>
+                        <input id="seat-2" class="seat-select" type="checkbox" value="2" name="seat[]" />
+                        <label for="seat-2" class="seat"></label>
+                        <input id="seat-3" class="seat-select" type="checkbox" value="3" name="seat[]" />
+                        <label for="seat-3" class="seat"></label>
+                        <input id="seat-4" class="seat-select" type="checkbox" value="4" name="seat[]" />
+                        <label for="seat-4" class="seat"></label>
+                    </section>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <section id="seat">
+                    <input id="seat-5" class="seat-select" type="checkbox" value="5" name="seat[]" />
+                    <label for="seat-5" class="seat"></label>
+                    <input id="seat-6" class="seat-select" type="checkbox" value="6" name="seat[]" />
+                    <label for="seat-6" class="seat"></label>
+                    <input id="seat-7" class="seat-select" type="checkbox" value="7" name="seat[]" />
+                    <label for="seat-7" class="seat"></label>
+                    <input id="seat-8" class="seat-select" type="checkbox" value="8" name="seat[]" />
+                    <label for="seat-8" class="seat"></label>
+                </section>
+                </td>
+            </tr>
+        </table>
+        <input type="submit"/>
+</body>
+</html>

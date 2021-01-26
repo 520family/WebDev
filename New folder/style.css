@@ -1,0 +1,67 @@
+h2
+{
+    font-family: 'Courier New', Courier, monospace;
+    color:#135ba3;  
+}
+
+input
+{
+    width: 50em;
+    height: 2em;
+    font-size: 22px;
+}
+
+top img
+{
+    position: relative;
+    text-align: right;
+}
+
+.column
+{
+    float: left;
+    padding: 5px;
+}
+
+.row::after 
+{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#topIcon
+{
+    margin-top: -8px;
+}
+
+ul
+{
+    margin: 10px -20px 50px -20px;
+    padding: 10px;
+    background-color: #333;
+    position: sticky;
+}
+
+li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+li a
+{
+    color: white;
+    padding: 14px 16px;
+    font-size: 24px;
+}
+
+li a:hover
+{
+    background-color: #135ba3;
+}
+
+.images img
+{
+    margin: 60px 30px 20px 60px;
+}

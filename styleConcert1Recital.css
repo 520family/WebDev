@@ -1,0 +1,139 @@
+body
+{
+    background-color: gray;
+}
+
+h2
+{
+    font-family: 'Courier New', Courier, monospace;
+    color:#135ba3;  
+}
+
+input
+{
+    width: 50em;
+    height: 2em;
+    font-size: 22px;
+}
+
+top img
+{
+    position: relative;
+    text-align: right;
+}
+
+.column
+{
+    float: left;
+    padding: 5px;
+}
+
+.row::after 
+{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#topIcon
+{
+    margin-top: 6px;
+}
+
+ul
+{
+    margin: 10px -20px 50px -20px;
+    padding: 10px;
+    background-color: grey;
+    position: sticky;
+}
+
+li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+li a
+{
+    color: white;
+    padding: 14px 16px;
+    font-size: 24px;
+}
+
+li a:hover
+{
+    background-color: #135ba3;
+}
+
+h3
+{
+    text-align: center;
+    color: white;
+    font-size: 28px;
+}
+
+h4{
+    text-align: left;
+    color: white;
+    font-size: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.seat {
+    float: left;
+    display: block;
+    margin: 5px;
+    background-image: url("seat-green.png");
+    width: 50px;
+    height: 50px;
+}
+
+.seat-select {
+    display: none;
+}
+
+.seat-select:checked+.seat {
+    background-image: url("seat-red.png");
+}
+
+.details{
+    border-style: solid;
+    height: auto;
+    overflow: auto;
+}
+
+.tableseat{
+    float: left;
+}
+
+section.details {
+    float: left;
+    padding: 60px;
+    width: 50%;
+    height: 50%;
+    background-color: grey;
+    height: 300px; /* only for demonstration, should be removed */
+  }
+
+article.calculate {
+    float: left;
+    padding: 60px;
+    width: 50%;
+    background-color: grey;
+    height: 100px; /* only for demonstration, should be removed */
+}
+
+.calculate{
+    border-style: solid;
+}
+
+#pay{
+    float: right;
+    width: 10em;  
+    height: 2em;
+}
