@@ -5,9 +5,18 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="loginstyle.css">
+<?php 
+
+    /*$mysqli = new mysqli("localhost","my_user","my_password","my_db");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        exit();
+      }*/
+?>
 </head>
 
-<body class="bg">
+<body>
 
     <header>
         <h2>Concert Ticketing System</h2>
@@ -24,14 +33,16 @@
 
             <input class="input1" type="Password" name="password" placeholder="Password" required></input>
 
-            <div class="container"></div>
-            <button type="button" class="cancelbtn">Login</button>
+            <div class="btn_container">
 
 
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw"><a href="#">Forgot password?</a></span>
-    </div>
-    </form>
+                <button type="button" class="btn">Login</button>
+
+
+                <button type="button" class="btn">Cancel</button>
+                <span class="psw"><a href="#">Forgot password?</a></span>
+            </div>
+        </form>
 
     </div>
 </body>
