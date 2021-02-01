@@ -67,10 +67,11 @@
                                 
                                 // Store data in session variables
                                 $_SESSION["loggedin"] = true;
-                                $_SESSION["username"] = $id;                            
+                                $_SESSION["username"] = $id;   
+                                $_GET["username"] = $id;                        
                                 //?id=.$_SESSION['username']."
                                 // Redirect user to welcome page
-                                header("location: adminHomepage.php?id=.$id.");
+                                header("location: adminHomepage.php?username=$id");
                             } else{
                                 // Display an error message if password is not valid
                                 $password_err = "The password you entered was not valid.";

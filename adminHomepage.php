@@ -1,12 +1,48 @@
 <?php
+require_once "config.php";
 // Initialize the session
 session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: adminlogin.php");
     exit;
 }
+//$concerts = "SELECT id, name, type, date, start_time, end_time FROM concert WHERE admin_id = $_GET('id')";
+    $id = $_GET["username"];
+    $concerts = "SELECT id, name, type, date, start_time, end_time FROM concert WHERE admin_id = '$id'";
+
+    function delete(){
+        if(isset($_POST["id"]) && !empty($_POST["id"])){
+            // Include config file
+            
+            // Prepare a delete statement
+            $sql = "DELETE FROM employees WHERE id = ?";
+            
+            if($stmt = mysqli_prepare($link, $sql)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "i", $param_id);
+                
+                // Set parameters
+                $param_id = trim($_POST["id"]);
+                
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    // Records deleted successfully. Redirect to landing page
+                    header("location: index.php");
+                    exit();
+                } else{
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+            }
+             
+            // Close statement
+            mysqli_stmt_close($stmt);
+            
+            // Close connection
+            mysqli_close($link);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,33 +74,30 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <tr>
                 <th>ID</th>
                 <th>Concert Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr>
-                <td>1001</td>
-                <td>concert 1</td>
-                <td><button id="button1"></button></td>
-                <td><button id="button2"></button></td>
-            </tr>
-            <tr>
-                <td>1002</td>
-                <td>concert 2</td>
-                <td><button id="button3"></button></td>
-                <td><button id="button4"></button></td>
-            </tr>
-            <tr>
-                <td>1003</td>
-                <td>concert 3</td>
-                <td><button id="button5"></button></td>
-                <td><button id="button6"></button></td>
-            </tr>
-            <tr>
-                <td>1004</td>
-                <td>concert 4</td>
-                <td><button id="button7"></button></td>
-                <td><button id="button8"></button></td>
-            </tr>
+            <?php if($result = mysqli_query($link, $concerts)){
+                        if(mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_array($result)){
+                                echo "<tr>";    
+                                echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['name'] . "</td>";
+                                echo "<td>" . $row['type'] . "</td>";
+                                echo "<td>" . $row['date'] . "</td>";
+                                echo "<td>" . $row['start_time'] . "</td>";
+                                echo "<td>" . $row['end_time'] . "</td>";
+                                echo "<td><button id='button1'></button></td>";
+                                echo "<td><input type = 'submit' name='delete' value='Delete'><button><img src ='image/bin.png'></button></td>";
+                                echo "<tr>";
+                            }
+                        }
+                    }
+            ?>
         </table> 
         <a href="addNewConcert.php" button id="button" >Add new concert</button>
     </div>
