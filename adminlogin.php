@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="autstyle.css">
+    <title>Admin Login</title>
+    <link rel="stylesheet" type="text/css" href="loginstyle.css">
 <?php 
     require_once "config.php";
 
@@ -12,7 +12,7 @@
  
     // Check if the user is already logged in, if yes then redirect him to welcome page
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: homepage.php");
+        header("location: adminHomepage.php");
         exit;
     }
      
@@ -42,7 +42,7 @@
         // Validate credentials
         if(empty($username_err) && empty($password_err)){
             // Prepare a select statement
-            $sql = "SELECT user_id, password FROM user WHERE user_id = ?";
+            $sql = "SELECT id, password FROM admin WHERE id = ?";
             
             if($stmt = mysqli_prepare($link, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -59,7 +59,7 @@
                     // Check if username exists, if yes then verify password
                     if(mysqli_stmt_num_rows($stmt) == 1){                    
                         // Bind result variables
-                        mysqli_stmt_bind_result($stmt, $user_id, $hashed_password);
+                        mysqli_stmt_bind_result($stmt, $id, $hashed_password);
                         if(mysqli_stmt_fetch($stmt)){
                             if(password_verify($password, $hashed_password) == 0){
                                 // Password is correct, so start a new session
@@ -67,10 +67,11 @@
                                 
                                 // Store data in session variables
                                 $_SESSION["loggedin"] = true;
-                                $_SESSION["username"] = $id;                            
+                                $_SESSION["username"] = $id;   
+                                $_GET["username"] = $id;                        
                                 //?id=.$_SESSION['username']."
                                 // Redirect user to welcome page
-                                header("location: homepage.php?id=.$id.");
+                                header("location: adminHomepage.php?username=$id");
                             } else{
                                 // Display an error message if password is not valid
                                 $password_err = "The password you entered was not valid.";
@@ -104,7 +105,7 @@
 
     </section>
     <div class="login_form">
-        <h2 class="header">User Login Page</h2>
+        <h2 class="header">Admin Login Page</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <input class="input1" type="text" name="username" placeholder="Username" required></input>
@@ -114,11 +115,7 @@
                 <span class="help-block"><?php echo $password_err; ?></span>
 
             <div class="btn_container">
-
-
                 <input type="submit" class="btn btn-primary" value="Login">
-
-                <span class="#"><a href="adminlogin.php">Login as Admin?</a></span>
             </div>
         </form>
 
