@@ -1,5 +1,5 @@
 body {
-    background-color: #282828;
+    background-color: white;
 }
 
 h2 {
@@ -135,4 +135,13 @@ th {
 #button:hover {
     background-color: grey;
     color: white;
+}
+
+.logout-button {
+    float: right;
+}
+
+head {
+    background-color: white;
+    background: url("image/login_bg.png") no-repeat;
 }
