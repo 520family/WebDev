@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" type="text/css" href="loginstyle.css">
 <?php 
     require_once "config.php";
@@ -12,7 +12,7 @@
  
     // Check if the user is already logged in, if yes then redirect him to welcome page
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: homepage.php");
+        header("location: adminHomepage.php");
         exit;
     }
      
@@ -42,7 +42,7 @@
         // Validate credentials
         if(empty($username_err) && empty($password_err)){
             // Prepare a select statement
-            $sql = "SELECT id, hashed_password FROM user WHERE id = ?";
+            $sql = "SELECT id, hashed_password FROM admin WHERE id = ?";
             
             if($stmt = mysqli_prepare($link, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -70,7 +70,7 @@
                                 $_SESSION["username"] = $id;                            
                                 //?id=.$_SESSION['username']."
                                 // Redirect user to welcome page
-                                header("location: homepage.php?id=.$id.");
+                                header("location: adminHomepage.php?id=.$id.");
                             } else{
                                 // Display an error message if password is not valid
                                 $password_err = "The password you entered was not valid.";
@@ -104,7 +104,7 @@
 
     </section>
     <div class="login_form">
-        <h2 class="header">User Login Page</h2>
+        <h2 class="header">Admin Login Page</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <input class="input1" type="text" name="username" placeholder="Username" required></input>
@@ -114,11 +114,7 @@
                 <span class="help-block"><?php echo $password_err; ?></span>
 
             <div class="btn_container">
-
-
                 <input type="submit" class="btn btn-primary" value="Login">
-
-                <span class="#"><a href="adminlogin.php">Login as Admin?</a></span>
             </div>
         </form>
 

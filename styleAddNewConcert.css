@@ -1,0 +1,88 @@
+body
+{
+    background-color: #282828;
+}
+
+h2
+{
+    font-family: 'Courier New', Courier, monospace;
+    color:#135ba3;  
+}
+
+input
+{
+    width: 50em;
+    height: 2em;
+    font-size: 22px;
+}
+
+top img
+{
+    position: relative;
+    text-align: right;
+}
+
+.column
+{
+    float: left;
+    padding: 5px;
+}
+
+.row::after 
+{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#topIcon
+{
+    margin-top: -8px;
+}
+
+h3
+{
+    text-align: center;
+    font-size: 28px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+.heading
+{
+    width: 300px;
+    border: 15px solid aliceblue;
+    padding: px;
+    margin: 20px 30px 15px 550px;
+}
+
+.mainbox
+{
+    width: 1250px;
+    height: auto;
+    border: 2px solid #000000;
+    padding: 50px;
+    margin: 40px 20px 20px 60px;
+    background-color:aliceblue;
+}
+
+#startTime , #endTime
+{
+    width: 10em;
+    height: 2em;
+}
+
+#submit
+{
+    width: 10em;
+}
+
+h4
+{
+    font-size: 20px;
+}
+
+#details
+{
+    height: 10em;
+}

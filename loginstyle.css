@@ -46,3 +46,7 @@
 .btn:hover {
     background: blue;
 }
+
+.login_form.header{
+    text-align: center;
+}
