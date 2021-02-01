@@ -84,6 +84,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <?php if($result = mysqli_query($link, $concerts)){
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){
+                                $conid = $row['id'];
                                 echo "<tr>";    
                                 echo "<td>" . $row['id'] . "</td>";
                                 echo "<td>" . $row['name'] . "</td>";
@@ -91,7 +92,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 echo "<td>" . $row['date'] . "</td>";
                                 echo "<td>" . $row['start_time'] . "</td>";
                                 echo "<td>" . $row['end_time'] . "</td>";
-                                echo "<td><button id='button1'></button></td>";
+                                echo "<td><button id='button1'><a href='editConcert.php?concertid=$conid'>Edit</button></td>";
                                 echo "<td><input type = 'submit' name='delete' value='Delete'><button><img src ='image/bin.png'></button></td>";
                                 echo "<tr>";
                             }
