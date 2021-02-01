@@ -11,7 +11,7 @@
     z-index: -1;
 }
 
-.login_form {
+.form {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -45,4 +45,12 @@
 
 .btn:hover {
     background: blue;
+}
+
+p {
+    padding-left: 30%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    color: white;
+    width: fit-content;
 }

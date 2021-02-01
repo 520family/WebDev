@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="loginstyle.css">
+    <link rel="stylesheet" type="text/css" href="autstyle.css">
 <?php 
 
     /*$mysqli = new mysqli("localhost","my_user","my_password","my_db");
@@ -18,14 +18,11 @@
 
 <body>
 
-    <header>
-        <h2>Concert Ticketing System</h2>
-
-    </header>
+<?php include 'header.php'; ?>
     <section class="cover">
 
     </section>
-    <div class="login_form">
+    <div class="form">
         <form action="#" method="post">
 
             <input class="input1" type="text" name="username" placeholder="Username" required></input>
