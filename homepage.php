@@ -1,3 +1,14 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concert Ticketing System</title>
     <link rel="stylesheet" href="style.css">
+    <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
     <div class=top>
@@ -26,9 +38,9 @@
         </ul> 
     </div>
     <div class="images">
-        <a href="#"><img src="recital concert.jpg" alt="recital concert"></a>
-        <a href="#"><img src="theatrical.jpg" alt="threatical concert"></a>
-        <a href="#"><img src="classical.jpeg" alt="classical concert"></a>
+        <a href="#"><img src="image/recital concert.jpg" alt="recital concert"></a>
+        <a href="#"><img src="image/theatrical.jpg" alt="threatical concert"></a>
+        <a href="#"><img src="image/classical.jpeg" alt="classical concert"></a>
     </div>
     <script src="app.js"></script>
 </body>
