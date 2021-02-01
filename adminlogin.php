@@ -42,7 +42,7 @@
         // Validate credentials
         if(empty($username_err) && empty($password_err)){
             // Prepare a select statement
-            $sql = "SELECT id, hashed_password FROM admin WHERE id = ?";
+            $sql = "SELECT id, password FROM admin WHERE id = ?";
             
             if($stmt = mysqli_prepare($link, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -61,7 +61,7 @@
                         // Bind result variables
                         mysqli_stmt_bind_result($stmt, $id, $hashed_password);
                         if(mysqli_stmt_fetch($stmt)){
-                            if(strcmp($password, $hashed_password) == 0){
+                            if(password_verify($password, $hashed_password) == 0){
                                 // Password is correct, so start a new session
                                 session_start();
                                 
