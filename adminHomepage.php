@@ -8,39 +8,31 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: adminlogin.php");
     exit;
 }
+
 //$concerts = "SELECT id, name, type, date, start_time, end_time FROM concert WHERE admin_id = $_GET('id')";
     $id = $_GET["username"];
     $concerts = "SELECT id, name, type, date, start_time, end_time FROM concert WHERE admin_id = '$id'";
 
-    function delete(){
-        if(isset($_POST["id"]) && !empty($_POST["id"])){
-            // Include config file
+    if(isset($_POST["id"]) && !empty($_POST["id"])){
+        $concert_id = $
+        // Prepare a delete statement
+        $sql = "DELETE FROM concert WHERE id = '$concert_id'";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
             
-            // Prepare a delete statement
-            $sql = "DELETE FROM employees WHERE id = ?";
+            // Set parameters
+            $param_id = trim($_POST["id"]);
             
-            if($stmt = mysqli_prepare($link, $sql)){
-                // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "i", $param_id);
-                
-                // Set parameters
-                $param_id = trim($_POST["id"]);
-                
-                // Attempt to execute the prepared statement
-                if(mysqli_stmt_execute($stmt)){
-                    // Records deleted successfully. Redirect to landing page
-                    header("location: index.php");
-                    exit();
-                } else{
-                    echo "Oops! Something went wrong. Please try again later.";
-                }
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Records deleted successfully. Redirect to landing page
+                header("location: index.php");
+                exit();
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
             }
-             
-            // Close statement
-            mysqli_stmt_close($stmt);
-            
-            // Close connection
-            mysqli_close($link);
         }
     }
 ?>
@@ -82,9 +74,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <th>Delete</th>
             </tr>
             <?php if($result = mysqli_query($link, $concerts)){
+                        $username = $_GET["username"];
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){
-                                $conid = $row['id'];
                                 echo "<tr>";    
                                 echo "<td>" . $row['id'] . "</td>";
                                 echo "<td>" . $row['name'] . "</td>";
@@ -92,8 +84,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 echo "<td>" . $row['date'] . "</td>";
                                 echo "<td>" . $row['start_time'] . "</td>";
                                 echo "<td>" . $row['end_time'] . "</td>";
-                                echo "<td><button id='button1'><a href='editConcert.php?concertid=$conid'>Edit</button></td>";
-                                echo "<td><input type = 'submit' name='delete' value='Delete'><button><img src ='image/bin.png'></button></td>";
+                                echo "<td><button id='button1'></button></td>";
+                                echo "<td><a href='deleteConcert.php?username=".$username."&concert_id=".$row['id']."'><button><img src ='image/bin.png'></button></a></td>";
+                                echo "</form>";
                                 echo "<tr>";
                             }
                         }
