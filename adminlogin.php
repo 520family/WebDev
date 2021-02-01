@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Login</title>
-    <link rel="stylesheet" type="text/css" href="loginstyle.css">
+    <link rel="stylesheet" type="text/css" href="styleAdmin.css">
 <?php 
     require_once "config.php";
 

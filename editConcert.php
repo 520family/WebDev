@@ -4,10 +4,6 @@
     $sql = "SELECT * from concert where id =$id";
     $result = $link->query($sql);
     $row = $result->fetch_assoc();
-
-
-
-
     
 ?>
 
