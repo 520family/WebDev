@@ -22,17 +22,7 @@ $reservations = "SELECT  id, code, status, concert_id FROM reservation WHERE use
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
-    <div class=top>
-        <h2>Concert Ticketing System</h2>
-        <div class="row">
-            <div class="column">
-                <input type="text" placeholder="Search...">
-            </div>
-            <div class="column">
-                <img src="rectangle.png" alt="icon" id="topIcon">
-            </div>
-        </div>
-    </div>
+    <?php include "adminHeader.html" ?>
     <div class="topnav">
         <ul>
             <li><a href="myProfile.php?username=<?php echo $id; ?>" >My Profile</a></li>

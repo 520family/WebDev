@@ -6,7 +6,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-$id = $_GET['username'];
+$id = $_GET["username"];
 
 ?>
 
@@ -19,22 +19,13 @@ $id = $_GET['username'];
     <link rel="stylesheet" href="styleAddNewConcert.css">
 </head>
 <body>
-    <div class=top>
-        <h2>Concert Ticketing System</h2>
-        <div class="row">
-            <div class="column">
-                <input type="text" placeholder="Search...">
-            </div>
-            <div class="column">
-                <img src="rectangle.png" alt="icon" id="topIcon">
-            </div>
-        </div>
-    </div>
+    <?php include "adminHeader.html" ?>
+    <?php include "adminNavigation.php" ?>
     <div class="heading">
         <h3>Add New Concert</h3>
     </div>
     <div class="mainbox">
-        <form action="addConcert.php?username=<?php echo $_GET["username"]; ?>" method="POST">
+        <form action="addConcert.php?username=<?php echo $_GET["username"]; ?>" method="POST" enctype="multipart/form-data">
             <h4>Name</h4>
             <?php 
                 echo '<input type="text" id="name" name="name">';
@@ -67,7 +58,11 @@ $id = $_GET['username'];
                     ?>
                 </div>
             </div>
-            
+            <h4>Poster</h4>
+            <?php
+                echo 'Select image to upload:';
+                echo '<input type="file" name="fileToUpload" id="fileToUpload">';
+            ?>
             <input type="submit" id="submit" name="submit" value="Add">
         </form>
     </div>

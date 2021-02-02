@@ -54,24 +54,8 @@
       }
 ?>
 <body>
-    <div class=top>
-        <h2>Concert Ticketing System</h2>
-        <div class="row">
-            <div class="column">
-                <input type="text" placeholder="Search...">
-            </div>
-            <div class="column">
-                <img src="rectangle.png" alt="icon" id="topIconRecital">
-            </div>
-        </div>
-    </div>
-    <div class="topnav">
-        <ul>
-            <li><a href="recital.html" >Recital</a></li>
-            <li><a href="threatical.html" >Threatical</a></li>
-            <li><a href="classical.html" >Classical</a></li>
-        </ul> 
-    </div>
+    <?php include "userHeader.html" ?>
+    <?php include "userNavigation.php" ?>
   
     <div class="title">
         <h3>Concert 1</h3>

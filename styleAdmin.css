@@ -152,3 +152,22 @@ head{
     background-color: white;
     background: url("image/login_bg.png") no-repeat;
 }
+
+ul
+{
+    margin: 10px -20px 50px -20px;
+    padding: 10px;
+    background-color: #333;
+    position: sticky;
+}
+
+li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+li a:hover
+{
+    background-color: #135ba3;
+}

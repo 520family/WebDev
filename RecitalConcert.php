@@ -22,26 +22,8 @@ $recital_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Recital'"
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
-    <div class=top>
-        <h2>Concert Ticketing System</h2>
-        <div class="row">
-            <div class="column">
-                <input type="text" placeholder="Search...">
-            </div>
-            <div class="column">
-                <img src="rectangle.png" alt="icon" id="topIcon">
-            </div>
-        </div>
-    </div>
-    <div class="topnav">
-        <ul>
-            <li><a href="myProfile.php?username=<?php echo $id; ?>" >My Profile</a></li>
-            <li><a href="myReservation.php?username=<?php echo $id; ?>" >My Reservation</a></li>
-            <li><a href="RecitalConcert.php?username=<?php echo $id; ?>" >Recital</a></li>
-            <li><a href="ThreaticalConcert.php?username=<?php echo $id;?>">Threatical</a></li>
-            <li><a href="ClassicalConcert.php?username=<?php echo $id;?>">Classical</a></li>
-        </ul> 
-    </div>
+    <?php include "userHeader.html" ?>
+    <?php include "userNavigation.php" ?>
     <div class="images">
     <?php if($result = mysqli_query($link, $recital_concerts)){
                         $id = $_GET['username'];
