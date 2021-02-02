@@ -14,8 +14,15 @@
         exit;
     }
     $id = $_GET['username'];
-    $concert_id = $_GET['concert_id'];
+    $concert_id = $_GET["concert_id"];
     $concert = "SELECT  id, image_path FROM concert WHERE id = '$concert_id'";
+    if($result = mysqli_query($link, $concert)){
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_array($result)){  
+                $img_src = $row['image_path'];
+            }
+        }
+    }
     function printSeats(){
 
       $x = 1;
@@ -78,31 +85,12 @@
             </table>
             <section class="details">
                 <?php
-                    
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <h3>Details</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>               
-                </section>   
-                <article class="calculate">
-                    <h3>Price</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p> 
-                    <h3>Quantity</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>        
-                    <input type="submit" id="pay"/> 
-                </article> 
+                    //echo "<h3>Details</h3>";
+                 echo "<img src=".$img_src.">";     
+            echo"</section>";
+                echo"<article class='calculate'>";
+                echo"<input type='submit' id='pay'/> ";
+                echo"</article>";
             ?>  
     </div>
 

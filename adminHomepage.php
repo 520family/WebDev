@@ -74,7 +74,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <th>Delete</th>
             </tr>
             <?php if($result = mysqli_query($link, $concerts)){
-                        $username = $_GET["username"];
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){
                                 echo "<tr>";    
@@ -85,7 +84,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 echo "<td>" . $row['start_time'] . "</td>";
                                 echo "<td>" . $row['end_time'] . "</td>";
                                 echo "<td><button id='button1'></button></td>";
-                                echo "<td><a href='deleteConcert.php?username=".$username."&concert_id=".$row['id']."'><button><img src ='image/bin.png'></button></a></td>";
+                                echo "<td><a href='deleteConcert.php?username=".$id."&concert_id=".$row['id']."'><button><img src ='image/bin.png'></button></a></td>";
                                 echo "</form>";
                                 echo "<tr>";
                             }
@@ -93,7 +92,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     }
             ?>
         </table> 
-        <a href="addNewConcert.php" button id="button" >Add new concert</button>
+        <!-- JY changed -->
+        <a href="addNewConcert.php?username=<?php echo $id; ?>" button id="button" >Add new concert</a>
     </div>
 </body>
 </html>
