@@ -9,10 +9,11 @@
         $endTime =$_POST['endTime'];
         $adminID  = $id; //hard code
         $target_dir = "image/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir.basename($_FILES['fileToUpload']['name']);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        echo "File is not an image.";
+        //echo $target_file;
+        //echo "File is not an image.";
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -45,7 +46,7 @@
                 echo "SQL error";
                 exit();
             }else{
-                mysqli_stmt_bind_param($stmt, "ssssss", $name, $details, $date, $startTime, $endTime, $adminID, $target_file);
+                mysqli_stmt_bind_param($stmt, "sssssss", $name, $details, $date, $startTime, $endTime, $adminID, $target_file);
                 mysqli_stmt_execute($stmt);
             }    
             header("Location: addNewConcert.php?username=$id&submit=success");
