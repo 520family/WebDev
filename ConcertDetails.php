@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styleConcert1Recital.css">
-
-
 </head>
 <?php 
-
+    require_once "config.php";
+    session_start();
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: login.php");
+        exit;
+    }
+    $id = $_GET['username'];
+    $concert_id = $_GET['concert_id'];
+    $concert = "SELECT  id, image_path FROM concert WHERE id = '$concert_id'";
     function printSeats(){
 
       $x = 1;
@@ -71,30 +77,33 @@
                 <?php printSeats(); ?>
             </table>
             <section class="details">
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <h3>Details</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>               
-            </section>   
-            <article class="calculate">
-                <h3>Price</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p> 
-                <h3>Quantity</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>        
-                <input type="submit" id="pay"/> 
-            </article>   
+                <?php
+                    
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>               
+                </section>   
+                <article class="calculate">
+                    <h3>Price</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p> 
+                    <h3>Quantity</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>        
+                    <input type="submit" id="pay"/> 
+                </article> 
+            ?>  
     </div>
 
 

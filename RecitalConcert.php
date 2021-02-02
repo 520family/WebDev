@@ -9,10 +9,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 $id = $_GET['username'];
-$concerts = "SELECT  id, image_path FROM concert";
+$recital_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Recital'";
 ?>
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,12 +25,12 @@ $concerts = "SELECT  id, image_path FROM concert";
     <div class=top>
         <h2>Concert Ticketing System</h2>
         <div class="row">
-                <div class="column">
-                    <input type="text" placeholder="Search...">
+            <div class="column">
+                <input type="text" placeholder="Search...">
             </div>
             <div class="column">
                 <img src="rectangle.png" alt="icon" id="topIcon">
-            </div>  
+            </div>
         </div>
     </div>
     <div class="topnav">
@@ -43,8 +43,8 @@ $concerts = "SELECT  id, image_path FROM concert";
         </ul> 
     </div>
     <div class="images">
-    <?php if($result = mysqli_query($link, $concerts)){
-                        $username = $_GET['username'];
+    <?php if($result = mysqli_query($link, $recital_concerts)){
+                        $id = $_GET['username'];
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){  
                                 $img_src = $row['image_path'];
