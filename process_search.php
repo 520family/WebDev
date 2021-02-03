@@ -8,7 +8,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-//$id = $_GET['username'];
+$id = $_GET['username'];
 
 ?>
 
@@ -22,71 +22,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
-    <div class=top>
-        <h2>Concert Ticketing System</h2>
-				<div class="block">
-        	<div class="wrap">
-                <form action="process_search.php" id="reservation-form" method="post" onsubmit="myFunction()">
-        		       <fieldset>
-        		       	<div class="field" >
-                                        <input type="text"  placeholder="Search Concepts Here..."  id="search111" name="searching">
-                                        <input type="submit"   value="Search" name="search" id="button111">
-            </div>
-        		       </fieldset>
-                    </form>
-                    <div class="clear"></div>
-           </div>
-        </div>
-        <script>
-        function myFunction() {
-             if($('#search111').val()=="")
-                {
-                    alert("Please enter a concert name...");//empty searchBar field
-                }
-          }
-            </script>
+    <?php include "userHeader.html" ?>
+    <?php include "userNavigation.php" ?>
+    <div class="search">
+    <?php
+    $name = $_POST['searching'];
+    $query = "SELECT * FROM concert where name='$name' ";
+     if($result = mysqli_query($link, $query)){
+                        $id = $_GET['username'];
+                        if(mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_array($result)){
+                                $img_src = $row['image_path'];
+                                $concert_id = $row['id'];
+
+                                echo "<a href='ConcertDetails.php?username=".$id."'&concert_id=".$concert_id."><img src=".$img_src."></a>";
+                            }
+                        }
+                    }
+    ?>
     </div>
-    <div class="topnav">
-        <ul>
-            <li><a href="myProfile.php?username=<?php echo $id; ?>" >My Profile</a></li>
-            <li><a href="myReservation.php?username=<?php echo $id; ?>" >My Reservation</a></li>
-            <li><a href="RecitalConcert.php?username=<?php echo $id; ?>" >Recital</a></li>
-            <li><a href="ThreaticalConcert.php?username=<?php echo $id;?>">Threatical</a></li>
-            <li><a href="ClassicalConcert.php?username=<?php echo $id;?>">Classical</a></li>
-        </ul>
-    </div>
-	</div>
-	<div class="content">
-		<div class="wrap">
-			<div class="content-top">
-				<h3>Concerts</h3>
-				<?php
-							 $today=date("Y-m-d");
-							 $search=$_POST['searching'];
-							 $connection = mysqli_connect("localhost","root","");
-							 $db = mysqli_select_db($connection,'concertbooking (3) (1)');
-							 $name = $_POST['searching'];
-							 $query = "SELECT * FROM concert where name='$name' ";
-						 	$qry2=mysqli_query($connection,$query);
-							if(isset($_POST['search'])){
-								while($m=mysqli_fetch_array($qry2))
-										 {
-											?>
-											<form action="" method="POST">
-												$img_src = $m['image_path'];
-												$concert_id = $m['id'];
-
-											  echo "<a href='ConcertDetails.php?username=".$id."'&concert_id=".$concert_id."><img src=".$img_src."></a>";
-											</form>
-
-					<?php
-						}
-					}
-						?>
-		</div>
-					<div class="clear"></div>
-				</div>
-
     <script src="app.js"></script>
 </body>
 </html>
