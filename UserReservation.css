@@ -226,3 +226,11 @@ li a:hover
 .logout-button{
     float: right;
 }
+
+#topIcon
+{
+    width: auto;
+    height: auto;
+    float: right;
+    margin-top: -8px;
+}

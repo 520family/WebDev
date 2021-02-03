@@ -8,7 +8,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-$id = $_GET['username'];
+$id = $_GET["username"];
 
 ?>
 
@@ -22,14 +22,14 @@ $id = $_GET['username'];
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
-    <?php include "userHeader.html" ?>
+    <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
     <div class="search">
     <?php
     $name = $_POST['searching'];
     $query = "SELECT * FROM concert where name='$name' ";
      if($result = mysqli_query($link, $query)){
-                        $id = $_GET['username'];
+                        $id = $_GET["username"];
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){
                                 $img_src = $row['image_path'];

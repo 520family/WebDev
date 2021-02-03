@@ -22,7 +22,7 @@ $concerts = "SELECT  id, image_path FROM concert";
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
-    <?php include "userHeader.html" ?>
+    <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
     <div class="images">
     <?php if($result = mysqli_query($link, $concerts)){

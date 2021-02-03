@@ -22,16 +22,8 @@ $reservations = "SELECT  id, code, status, concert_id FROM reservation WHERE use
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
-    <?php include "adminHeader.html" ?>
-    <div class="topnav">
-        <ul>
-            <li><a href="myProfile.php?username=<?php echo $id; ?>" >My Profile</a></li>
-            <li><a href="myReservation.php?username=<?php echo $id; ?>" >My Reservation</a></li>
-            <li><a href="RecitalConcert.php?username=<?php echo $id; ?>" >Recital</a></li>
-            <li><a href="ThreaticalConcert.php?username=<?php echo $id;?>">Threatical</a></li>
-            <li><a href="ClassicalConcert.php?username=<?php echo $id;?>">Classical</a></li>
-        </ul> 
-    </div>
+    <?php include "userHeader.php" ?>
+    <?php include "userNavigation.php" ?>
     <div class="heading">
         <h3>List of Concerts</h3>
     </div>

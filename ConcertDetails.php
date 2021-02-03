@@ -54,7 +54,7 @@
       }
 ?>
 <body>
-    <?php include "userHeader.html" ?>
+    <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
   
     <div class="title">
