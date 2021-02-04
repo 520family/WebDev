@@ -2,10 +2,27 @@
     <h2>Concert Ticketing System</h2>
     <div class="row">
         <div class="column">
-            <input type="text" placeholder="Search...">
+          <form action="admin_process_search.php?username=<?php echo $id; ?>" id="reservation-form2" method="post" onsubmit="myFunction()">
+             <fieldset>
+              <div class="field" >
+                                  <input type="text"  placeholder="Search the Reservation by ID Here..."   id="search222" name="searching2">
+                                  <input type="image" img src ="image/search.png" value="Search"  alt="icon" id="topIcon">
+            </div>
+             </fieldset>
+              </form>
+              <div class="clear"></div>
         </div>
         <div class="column">
             <img src="rectangle.png" alt="icon" id="topIcon">
         </div>
     </div>
 </div>
+
+<script>
+function myFunction() {
+     if($('#search222').val()=="")
+        {
+            alert("Please enter the Reservation ID...");//empty searchBar field
+        }
+  }
+    </script>
