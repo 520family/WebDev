@@ -14,15 +14,12 @@
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $checktime = "SELECT * from concert WHERE DATE(date) = '$date'";
         $result = mysqli_query($link,$checktime);
-        $row = mysqli_fetch_assoc($result);
         while($row = mysqli_fetch_assoc($result)){        
             if($row["name"] != $name){
-                if($row["start_time"]>=$startTime){
-                    if($row["start_time"]<=$endTime){
+                if($startTime>=$row["start_time"] &&$startTime <=$row["end_time"]){
                         header("Location: addNewConcert.php?username=$id&submit=empty");
                         exit();
-                    }
-                } elseif($row["end_time"]>=$startTime && $row["end_time"] <= $endTime){
+                } elseif($endTime<=$row["end_time"]&& $endTime>=$row["start_time"]  ){
                     header("Location: addNewConcert.php?username=$id&submit=empty");
                     exit();
                 }

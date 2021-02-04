@@ -1,7 +1,7 @@
 <?php
     require_once "config.php";
-    $admin = $_GET['adminid'];
-    $concertid = $_GET['concertid'];
+    $admin = $_GET['username'];
+    $concertid = $_GET['concert_id'];
     $sql = "SELECT * from concert where id =$concertid";
     $result = $link->query($sql);
     $row = $result->fetch_assoc();
@@ -13,7 +13,24 @@
     $newdate = $_POST["newdate"];
     $newstartTime = $_POST["newstartTime"];
     $newendTime = $_POST["newendTime"];
-    if(!empty($a = $_FILES["fileToUpload"])){
+    $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate'";
+    $result = mysqli_query($link,$checktime);
+    while($row = mysqli_fetch_assoc($result)){        
+        if($row["name"] != "$newname"){
+            if($row["date" ]== "$newdate"){
+               if($row["start_time"]>=$newstartTime && $row["start_time"]<=$newendTime){
+
+                    header("Location: adminHomepage.php?username=$admin&submit=empty");
+                    exit();
+                } elseif($row["end_time"]<=$newendTime && $row["end_time"] >= $newstartTime){
+                    header("Location: adminHomepage.php?username=$admin&submit=empty");
+                    exit();
+                } 
+            } 
+        } 
+    }
+
+    if(!isset($_FILES["fileToUpload"])){
         $target_dir = "image/";
         $target_file = $target_dir.basename($_FILES['fileToUpload']['name']);
         $uploadOk = 1;
