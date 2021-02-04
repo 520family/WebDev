@@ -12,8 +12,26 @@
         $target_file = $target_dir.basename($_FILES['fileToUpload']['name']);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        //echo $target_file;
-        //echo "File is not an image.";
+        $checktime = "SELECT * from concert WHERE DATE(date) = '$date'";
+        $result = mysqli_query($link,$checktime);
+        $row = mysqli_fetch_assoc($result);
+        while($row = mysqli_fetch_assoc($result)){        
+            if($row["name"] != $name){
+                if($row["start_time"]>=$startTime){
+                    if($row["start_time"]<=$endTime){
+                        header("Location: addNewConcert.php?username=$id&submit=empty");
+                        exit();
+                    }
+                } elseif($row["end_time"]>=$startTime && $row["end_time"] <= $endTime){
+                    header("Location: addNewConcert.php?username=$id&submit=empty");
+                    exit();
+                }
+            } else {
+                header("Location: addNewConcert.php?username=$id&submit=empty");
+                exit();
+            }
+        }
+
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -56,5 +74,5 @@
     else{
         header("Location: addNewConcert.php");
         exit();
-    }
+    }\mysqli_close($link);
 ?>

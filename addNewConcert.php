@@ -25,7 +25,7 @@ $id = $_GET["username"];
         <h3>Add New Concert</h3>
     </div>
     <div class="mainbox">
-        <form action="addConcert.php?username=<?php echo $_GET["username"]; ?>" method="POST" enctype="multipart/form-data">
+        <form action="addConcert.php?username=<?php echo $_GET['username']; ?>" method="POST" enctype="multipart/form-data">
             <h4>Name</h4>
             <?php 
                 echo '<input type="text" id="name" name="name">';

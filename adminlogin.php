@@ -61,7 +61,7 @@
                         // Bind result variables
                         mysqli_stmt_bind_result($stmt, $id, $hashed_password);
                         if(mysqli_stmt_fetch($stmt)){
-                            if(password_verify($password, $hashed_password) == 0){
+                            if(strcmp($password, $hashed_password) == 0){
                                 // Password is correct, so start a new session
                                 session_start();
                                 
