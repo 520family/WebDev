@@ -27,43 +27,20 @@ $id = $_GET["username"];
     </div>
     <div class="mainbox">
         <form action="addConcert.php?username=<?php echo $_GET['username']; ?>" method="POST" enctype="multipart/form-data">
-            <h4>Name</h4>
-            <?php 
-                echo '<input type="text" id="name" name="name">';
-            ?>
-            <h4>Details</h4>
-            <?php 
-                echo '<input type="text" id="details" name="details">';
-            ?>
-            <h4>Date</h4>
-            <?php 
-                echo '<input type="date" id="date" name="date">';
-            ?>
-            <div class="row">
-                <div class="column">
-                    <h4>Start Time</h4>
+
+
+                <input type="text" id="name" name="name" placeholder="Name">
+                <input type="text" id="details" name="details" placeholder="Details">
+                <input type="date" id="date" name="date">
+                <label>Start Time</lable>
+                <input type="time" id="startTime" name="startTime">
+                <label>End Time</lable>
+                <input type="time" id="endTime" name="endTime">
+                <div>
+                    <label>Poster</label>
+                    <label>Select image to upload</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
-                <div class="column">
-                    <h4>End Time</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <?php 
-                        echo '<input type="time" id="startTime" name="startTime">';
-                    ?>
-                </div>
-                <div class="column">
-                    <?php 
-                        echo '<input type="time" id="endTime" name="endTime">';
-                    ?>
-                </div>
-            </div>
-            <h4>Poster</h4>
-            <?php
-                echo 'Select image to upload:';
-                echo '<input type="file" name="fileToUpload" id="fileToUpload">';
-            ?>
             <input type="submit" id="submit" name="submit" value="Add">
         </form>
     </div>

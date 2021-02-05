@@ -117,8 +117,6 @@
             </table>
             <section class="details">
                 <?php
-                 $_SESSION["seats"] = array();
-                 $_SESSION["price"] = array();
                  $_SESSION["total_price"] = 0;  
                  echo "<img src=".$img_src.">"; 
                  echo "<h4>Details: </h4>";    
@@ -127,20 +125,6 @@
                  echo "<p>".$date."</p>";
                  echo "<h4>Time </h4>";    
                  echo "<p>".$start_time." - ".$end_time."</p>";
-<<<<<<< Updated upstream
-                ?> 
-            </section>
-            <?php
-                echo"<article class='calculate'>";
-                echo "<h4>Details: </h4>";    
-                echo "<p>".$details."</p>";
-                echo"<input type='submit' id='pay'/> ";
-                echo"</article>";
-                echo "<form action='update.php' method='post'>"; 
-                echo "<input type='submit' value='Update' id='submit'>";
-                echo "</form>";
-            ?>           
-=======
                 echo"</section>";
             
             echo"<article class='calculate'>";
@@ -178,7 +162,6 @@
                 echo"</article>";
                 //echo "<td><a href='editConcert.php?username=".$id."&concert_id=".$row['id']."'><button><img src ='image/edit.png'></button></a></td>";
             ?>  
->>>>>>> Stashed changes
     </div>
 
 

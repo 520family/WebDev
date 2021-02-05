@@ -1,88 +1,60 @@
-body
-{
+body {
+    height: 100%;
+    width: 100%;
     background-color: #282828;
 }
 
-h2
-{
-    font-family: 'Courier New', Courier, monospace;
-    color:#135ba3;  
-}
-
-input
-{
-    width: 50em;
-    height: 2em;
-    font-size: 22px;
-}
-
-top img
-{
-    position: relative;
-    text-align: right;
-}
-
-.column
-{
-    float: left;
-    padding: 5px;
-}
-
-.row::after 
-{
-    content: "";
-    clear: both;
-    display: table;
-}
-
-#topIcon
-{
-    margin-top: -8px;
-}
-
-h3
-{
+h3 {
     text-align: center;
     font-size: 28px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: white;
 }
 
-.heading
-{
-    width: 300px;
-    border: 15px solid aliceblue;
-    padding: px;
-    margin: 20px 30px 15px 550px;
+.heading {
+    width: 70%;
+    border: 3px solid rgba(92, 255, 255, 0.473);
+    padding: 0px;
+    margin: auto;
+    background-color: rgba(141, 182, 218, 0.3);
 }
 
-.mainbox
-{
-    width: 1250px;
+.mainbox {
+    width: 70%;
     height: auto;
     border: 2px solid #000000;
     padding: 50px;
-    margin: 40px 20px 20px 60px;
-    background-color:aliceblue;
+    margin: auto;
+    margin-top: 40px;
+    background-color: rgba(141, 182, 218, 0.3);
 }
 
-#startTime , #endTime
-{
+#startTime,
+#endTime {
     width: 10em;
     height: 2em;
 }
 
-#submit
-{
+#submit {
     width: 10em;
 }
 
-h4
-{
+h4 {
     font-size: 20px;
+    position: relative;
 }
 
-#details
-{
-    height: 10em;
+.mainbox input[type=text],
+input[type=time] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.date {
+    margin-top: 10px;
 }

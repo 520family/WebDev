@@ -32,4 +32,4 @@
         $_SESSION["price"] = $seat_price;
         $_SESSION["total_price"] = $total_price;
         header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id");
-?>
+?> 
