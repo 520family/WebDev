@@ -152,7 +152,9 @@
                  echo "<p>".$date."</p>";
                  echo "<h4>Time </h4>";    
                  echo "<p>".$start_time." - ".$end_time."</p>";
-                echo"</section>";
+                ?> 
+            </section>
+            <?php
                 echo"<article class='calculate'>";
                 echo "<h4>Details: </h4>";    
                 echo "<p>".$details."</p>";
@@ -161,7 +163,7 @@
                 echo "<form action='update.php' method='post'>"; 
                 echo "<input type='submit' value='Update' id='submit'>";
                 echo "</form>";
-            ?>  
+            ?>           
     </div>
 
 

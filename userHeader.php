@@ -3,12 +3,10 @@
     <div class="row">
         <div class="column">
           <form action="process_search.php?username=<?php echo $id; ?>" id="reservation-form" method="post" onsubmit="myFunction()">
-             <fieldset>
               <div class="field" >
-                                  <input type="text"  placeholder="Search the Concert Name Here..."   id="search111" name="searching">
-                                  <input type="image" img src ="image/search.png" value="Search" alt="icon" id="topIcon">
-            </div>       	
-             </fieldset>
+                <input type="text"  placeholder="Search the Concert Name Here..."   id="search111" name="searching">
+                <button value="search" alt="icon" id="topIcon"><img src ='image/search.png'></button>
+                </div>       	
               </form>
               <div class="clear"></div>
         </div>

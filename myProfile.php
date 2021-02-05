@@ -18,10 +18,12 @@ $threatical_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Threat
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concert Ticketing System</title>
+    <link rel="stylesheet" type="text/css" href="headerstyle.css">
     <link rel="stylesheet" href="style.css">
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
+    <div class="bg">
     <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
     <div class="images">
@@ -37,6 +39,7 @@ $threatical_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Threat
                         }
                     }
     ?>
+    </div>
     </div>
     <script src="app.js"></script>
 </body>

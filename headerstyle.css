@@ -1,0 +1,79 @@
+input {
+    width: 80%;
+    height: 2em;
+    font-size: 22px;
+    float: left;
+}
+
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    color: #135ba3;
+}
+
+.top {
+    width: 100%;
+    height: 100px;
+}
+
+.top img {
+    height: 3em;
+}
+
+.column {
+    width: 50%;
+    float: left;
+    padding: 5px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.topnav {
+    position: sticky;
+}
+
+.topnav ul {
+    padding: 10px;
+    background-color: #333;
+    position: sticky;
+    z-index: 2;
+}
+
+.topnav li {
+    list-style-type: none;
+    display: inline;
+    margin: 3em;
+    z-index: 2;
+}
+
+.topnav a {
+    z-index: 2;
+    color: white;
+}
+
+.logout-button {
+    color: red;
+    position: absolute;
+    right: 2em;
+    z-index: 1;
+    text-decoration: none;
+    padding: 0.3em .5em;
+}
+
+.top::before {
+    overflow: hidden;
+    content: ' ';
+    display: block;
+    position: absolute;
+    background-image: url("image/topbg.png");
+    background-size: auto;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: 14%;
+    opacity: .9;
+    z-index: -1;
+}
