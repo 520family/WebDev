@@ -5,7 +5,7 @@
         $concert_id = $_GET["concert_id"];
         if(isset($_POST['selected_seat'])) {
             $selected_seats = $_SESSION['seats'];
-            $seat_price = $_SESSION['price'];
+            $seat_price =array();
             $total_price = $_SESSION["total_price"];
             $index = 0;
             $selected_seats = $_POST['selected_seat']; 

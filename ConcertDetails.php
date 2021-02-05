@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styleConcert1Recital.css">
+    <link rel="stylesheet" href="headerstyle.css">
+    <link rel="stylesheet" href="concertDetails.css">
 </head>
 <?php 
     require_once "config.php";
@@ -79,6 +80,7 @@
             echo "</td>";
             echo "</tr>";
         }
+        echo "<br/>";
         echo "<input type='submit' value='Update' id='submit'>";
         echo "</form>";
     }
@@ -121,13 +123,12 @@
                  echo "<img src=".$img_src.">"; 
                  echo "<h4>Details: </h4>";    
                  echo "<p>".$details."</p>";
-                 echo "<h4>Date: </h4>";    
-                 echo "<p>".$date."</p>";
-                 echo "<h4>Time </h4>";    
-                 echo "<p>".$start_time." - ".$end_time."</p>";
-                echo"</section>";
-            
-            echo"<article class='calculate'>";
+                 echo "<h4>Date: ".$date. "</h4>";    
+                 echo "<h4>Time:  ".$start_time." - ".$end_time. "</h4>";    
+                ?>
+            </section>
+                <?php
+                echo"<article class='calculate'>";
                 echo "<h4>Seat selected: </h4>";
                 $selected_seats = $_SESSION["seats"];
                 $seat_price = $_SESSION["price"];
