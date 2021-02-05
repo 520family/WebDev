@@ -28,36 +28,35 @@
         }
     }
 
-    $x = 1;
-    $seat = array(
-        array("A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "A-8", "A-9", "A-10"),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-        array("", "", "", "", "", "", "", "", "", ""),
-    );
+    function printSeats($concert_id, $seats_row, $reservations, $link, $id){
+        $x = 1;
+        $seat = array(
+            array("A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "A-8", "A-9", "A-10"),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+            array("", "", "", "", "", "", "", "", "", ""),
+        );
 
-    $occupy = array(
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-        array(false, false, false, false, false, false, false, false, false, false),
-    );
-
-    function printSeats($concert_id, $seats_row, $reservations, $link){
-
-     /*   for ($i = 0; $i < 10; $i++){
+        $occupy = array(
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+            array(false, false, false, false, false, false, false, false, false, false),
+        );
+        echo "<form action='update.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
+        for ($i = 0; $i < 10; $i++){
             echo"<tr>"; 
             echo "<td>";
             echo "<section id='seat'>";
@@ -68,7 +67,7 @@
                             $occupy[$i][$j] = true;
                     }
                 }
-                echo "<input id='seat-".$x."' class='seat-select' type='checkbox' name='selected_seat' value='".$seat[$i][$j]."'";
+                echo "<input id='seat-".$x."' class='seat-select' type='checkbox' name='selected_seat[]' value='".$seat[$i][$j]."'";
                 if($occupy[$i][$j]){
                     echo " checked disabled='disabled'";
                 }
@@ -80,8 +79,8 @@
             echo "</td>";
             echo "</tr>";
         }
-        //echo "<input type='submit' value='Update' id='submit'>";
-        echo "</form>";*/
+        echo "<input type='submit' value='Update' id='submit'>";
+        echo "</form>";
     }
 
     function outputCartRow($file,$product,$quantity,$price){
@@ -106,45 +105,21 @@
     <br>
     <div class="a">
         <h4>Seat Arrangement</h4>
-        <form id="reservation" method="post" >
             <table class="tableseat">
                 <?php
                     $seats = "SELECT * from seat";
                     $reservations = "SELECT reservation.concert_id, reservation_seat.seat_id from reservation INNER JOIN reservation_seat ON reservation.id = reservation_seat.reservation_id";
                         if($seats_result = mysqli_query($link, $seats)){
                             $seats_row = mysqli_fetch_array($seats_result);
-                            echo "<form action='update.php' method='post'>"; 
-                            for ($i = 0; $i < 10; $i++){
-                                echo"<tr>"; 
-                                echo "<td>";
-                                echo "<section id='seat'>";
-                                for ($j = 0; $j < 10; $j++){
-                                    if($reservations_result = mysqli_query($link, $reservations)){
-                                        while($reservations_row = mysqli_fetch_array($reservations_result)){
-                                            if($reservations_row["concert_id"] = $concert_id && strcmp($reservations_row["seat_id"], $seat[$i][$j]) == 0)
-                                                $occupy[$i][$j] = true;
-                                        }
-                                    }
-                                    echo "<input id='seat-".$x."' class='seat-select' type='checkbox' name='selected_seat' value='".$seat[$i][$j]."'";
-                                    if($occupy[$i][$j]){
-                                        echo " checked disabled='disabled'";
-                                    }
-                                    echo "/>";
-                                    echo "<label for='seat-".$x."' class='seat'></label>";
-                                    $x++;
-                                }
-                                echo "</section>";
-                                echo "</td>";
-                                echo "</tr>";
-                            }
-                            echo "<input type='submit' value='Update' id='submit'>";
-                            echo "</form>";
+                            printSeats($concert_id, $seats_row, $reservations, $link, $id); 
                         }
                 ?>  
             </table>
             <section class="details">
                 <?php
-                    //echo "<h3>Details</h3>";
+                 $_SESSION["seats"] = array();
+                 $_SESSION["price"] = array();
+                 $_SESSION["total_price"] = 0;  
                  echo "<img src=".$img_src.">"; 
                  echo "<h4>Details: </h4>";    
                  echo "<p>".$details."</p>";
@@ -152,6 +127,7 @@
                  echo "<p>".$date."</p>";
                  echo "<h4>Time </h4>";    
                  echo "<p>".$start_time." - ".$end_time."</p>";
+<<<<<<< Updated upstream
                 ?> 
             </section>
             <?php
@@ -164,6 +140,45 @@
                 echo "<input type='submit' value='Update' id='submit'>";
                 echo "</form>";
             ?>           
+=======
+                echo"</section>";
+            
+            echo"<article class='calculate'>";
+                echo "<h4>Seat selected: </h4>";
+                $selected_seats = $_SESSION["seats"];
+                $seat_price = $_SESSION["price"];
+                $total_price = $_SESSION["total_price"]; 
+                
+                echo "<div id='mainbox'>";
+                    echo "<table>";
+                        echo  "<tr>";
+                                echo "<th>Selected Seat</th>";
+                                echo "<th>Price</th>";
+                        echo  "</tr>";
+                        foreach(array_combine($selected_seats, $seat_price) as $seat => $price){
+                            echo "<tr>";
+
+                            if(empty($selected_seats)){
+                                $selected_seat_error = "None of the seat is selected yet";
+                                echo "<td>". $selected_seat_error. "</td>";
+                            }else{
+                                echo "<td>" . $seat . "</td>";
+                            }
+                            
+                            if(empty($seat_price)){
+                                $price_error = "RM0";
+                                echo "<td>". $price_error ."</td>";
+                            }else{
+                                echo "<td>RM". $price . "</td>";
+                            }
+                            echo "<tr>";
+                        }
+                    echo "</table>";
+                echo "</div>";
+                echo"</article>";
+                //echo "<td><a href='editConcert.php?username=".$id."&concert_id=".$row['id']."'><button><img src ='image/edit.png'></button></a></td>";
+            ?>  
+>>>>>>> Stashed changes
     </div>
 
 
