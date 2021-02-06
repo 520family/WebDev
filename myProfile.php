@@ -18,7 +18,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleMyProfile.css">
-    <a href="logout.php" class="logout-button">Logout</a>
+    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
+    
 </head>
 <?php
 $sql= "select * FROM user where user_id='$loggedin_id'";

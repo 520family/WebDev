@@ -1,14 +1,19 @@
 <?php
     require_once "config.php";
-    $admin = $_GET['username'];
+    $id = $_GET['username'];
     $concertid = $_GET['concert_id'];
     $sql = "SELECT * from concert where id =$concertid";
     $result = $link->query($sql);
     $row = $result->fetch_assoc();
-
+    // Check if the user is already logged in, if yes then redirect him to welcome page
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: adminHomepage.php");
+        exit;
+    }
        
    if($_SERVER["REQUEST_METHOD"] == "POST"){
     $newname = $_POST["newname"];
+    $newtype = $_POST["newtype"];
     $newdetails = $_POST["newdetails"];
     $newdate = $_POST["newdate"];
     $newstartTime = $_POST["newstartTime"];
@@ -20,10 +25,10 @@
             if($row["date" ]== "$newdate"){
                if($row["start_time"]>=$newstartTime && $row["start_time"]<=$newendTime){
 
-                    header("Location: adminHomepage.php?username=$admin&submit=empty");
+                    header("Location: adminHomepage.php?username=$id&submit=empty");
                     exit();
                 } elseif($row["end_time"]<=$newendTime && $row["end_time"] >= $newstartTime){
-                    header("Location: adminHomepage.php?username=$admin&submit=empty");
+                    header("Location: adminHomepage.php?username=$id&submit=empty");
                     exit();
                 } 
             } 
@@ -64,14 +69,14 @@
         }
     }
     
-    $edit = "UPDATE concert SET name = '$newname', type = '$newdetails', date = '$newdate',
+    $edit = "UPDATE concert SET name = '$newname', type = '$newtype', details = '$newdetails', date = '$newdate',
     start_time = '$newstartTime',
     end_time = '$newendTime' 
     WHERE id = $concertid";
     
     if(mysqli_query($link,$edit)){
         echo "Record updated successfully";
-        header("location: adminHomepage.php?username=$admin");
+        header("location: adminHomepage.php?username=$id");
 
     } else {
         echo "Error updating record: " . mysqli_error($link);
@@ -87,45 +92,50 @@
     <title>Document</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleAddNewConcert.css">
+    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <body>
     <?php include "adminHeader.html" ?>
     <?php include "adminNavigation.php" ?>
     <div class="heading">
-        <h3>Add New Concert</h3>
+        <h3>Edit Concert</h3>
     </div>
     <div class="mainbox">
+
         <form action="<?php $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']?>" method="POST"  enctype="multipart/form-data">
-            <h4>Name</h4>
-            <input type="text" name="newname" value=<?php echo $row["name"]?>>
-            <h4>Details</h4>
-            <input type="text" name="newdetails" value=<?php echo $row["type"]?>>
-            <h4>Date</h4>
-            <input type="date" name="newdate" value=<?php echo $row["date"]?>>
-            <div class="row">
-                <div class="column">
-                    <h4>Start Time</h4>
-                </div>
-                <div class="column">
-                    <h4>End Time</h4>
-                </div>
+            <div>
+                <label>Name</label>
+                <input type="text" name="newname" value=<?php echo $row["name"]?>>
             </div>
-            <div class="row">
-                <div class="column">
-                    <input type="time" name="newstartTime" value=<?php echo $row["start_time"]?>> 
-                </div>
-                <div class="column">
-                    <input type="time" name="newendTime" value=<?php echo $row["end_time"]?>>
-                </div>
+            <div>
+                <label>Type</label>
+                <input type="text" name="newtype" value=<?php echo $row["type"]?>>
             </div>
-            <?php
-                echo 'Select image to upload:';
-                echo '';
-            ?>
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" id="submit" value="Edit">
+            <div>
+                <label>Details</label>
+                <input type="text" name="newdetails" value=<?php echo $row["details"]?>>
+            </div>
+            <div>
+                <label>Date</label>
+                <input type="date" name="newdate" value=<?php echo $row["date"]?>>
+            </div> 
+            <div>
+                <label>Start Time</label>
+                <input type="time" name="newstartTime" value=<?php echo $row["start_time"]?>> 
+            </div>
+            <div>
+                <label>End Time</label>
+                <input type="time" name="newendTime" value=<?php echo $row["end_time"]?>>
+            </div>
+            <div>
+                <label>Select image to upload:</label>
+                <input type="file" name="fileToUpload" id="fileToUpload">     
+            </div>
+            <div>
+             <input type="submit" id="submit" value="Edit">
+            </div>  
         </form>
-        
+   
     </div>
 </body>
 </html>

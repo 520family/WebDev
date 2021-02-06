@@ -20,7 +20,8 @@ $classical_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Classic
     <title>Concert Ticketing System</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/style.css">
-    <a href="logout.php" class="logout-button">Logout</a>
+    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
+
 </head>
 <body>
     <?php include "userHeader.php" ?>

@@ -44,9 +44,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="headerstyle.css">
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
-    <link rel="stylesheet" href="styleAdmin.css">
+    <link rel="stylesheet" href="./cssfile/styleAdmin.css">
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <body>
@@ -56,6 +55,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h3>User Reservation</h3>
     </div>
     <div class="mainbox">
+    <div class="column">
+            <form action="admin_process_search.php?username=<?php echo $id; ?>" id="reservation-form2" method="post" onsubmit="myFunction()">
+                <div class="field">
+                    <input type="text" placeholder="Search the Reservation by ID Here..." id="search222" name="searching2">
+                    <button value="search" alt="icon" id="topIcon"><img src ='image/search.png'></button>
+                </div>
+            </form>
+            <div class="clear"></div>
+        </div>
         <table>
             <tr>
                 <th>ID</th>

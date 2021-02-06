@@ -17,7 +17,8 @@ $id = $_GET["username"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./cssfile/headerstyle.css">
-    <link rel="stylesheet" href="styleAddNewConcert.css">
+    <link rel="stylesheet" href="./cssfile/styleAddNewConcert.css">
+    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <body>
     <?php include "adminHeader.html" ?>
@@ -27,21 +28,38 @@ $id = $_GET["username"];
     </div>
     <div class="mainbox">
         <form action="addConcert.php?username=<?php echo $_GET['username']; ?>" method="POST" enctype="multipart/form-data">
-
-
-                <input type="text" id="name" name="name" placeholder="Name">
-                <input type="text" id="details" name="details" placeholder="Details">
-                <input type="date" id="date" name="date">
-                <label>Start Time</lable>
-                <input type="time" id="startTime" name="startTime">
-                <label>End Time</lable>
-                <input type="time" id="endTime" name="endTime">
-                <div>
-                    <label>Poster</label>
-                    <label>Select image to upload</label>
-                    <input type="file" name="fileToUpload" id="fileToUpload">
-                </div>
-            <input type="submit" id="submit" name="submit" value="Add">
+        <div>
+                <label>Name</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label>Type</label>
+                <input type="text" name="type">
+            </div>
+            <div>
+                <label>Details</label>
+                <input type="text" name="details">
+            </div>
+            <div>
+                <label>Date</label>
+                <input type="date" name="date" >
+            </div> 
+            <div>
+                <label>Start Time</label>
+                <input type="time" name="startTime"> 
+            </div>
+            <div>
+                <label>End Time</label>
+                <input type="time" name="endTime">
+            </div>
+            <div>
+                <label>Poster</label>
+                <label>Select image to upload:</label>
+                <input type="file" name="fileToUpload" id="fileToUpload">     
+            </div>
+            <div>
+                <input type="submit" id="submit" name="submit" value="Add">
+            </div>
         </form>
     </div>
 </body>

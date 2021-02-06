@@ -5,6 +5,10 @@ input {
     float: left;
 }
 
+.top img {
+    height: 3em;
+}
+
 h2 {
     font-family: 'Courier New', Courier, monospace;
     color: #135ba3;
@@ -13,10 +17,6 @@ h2 {
 .top {
     width: 100%;
     height: 100px;
-}
-
-.top img {
-    height: 3em;
 }
 
 .column {
@@ -60,7 +60,16 @@ h2 {
     right: 2em;
     z-index: 1;
     text-decoration: none;
-    padding: 0.3em .5em;
+    padding: 3px;
+    background-color: rgba(255, 255, 255, 0.39);
+    border-radius: 0.5em;
+    width: max-content;
+}
+
+.logout-button img {
+    padding: auto;
+    height: 2em;
+    margin: auto;
 }
 
 .top::before {

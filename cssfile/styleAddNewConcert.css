@@ -2,6 +2,9 @@ body {
     height: 100%;
     width: 100%;
     background-color: #282828;
+    background-image: url("../image/adminbg.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 h3 {
@@ -20,10 +23,11 @@ h3 {
 }
 
 .mainbox {
-    width: auto;
-    height: 50%;
+    content: "";
+    width: 50%;
+    height: auto;
     border: 2px solid #000000;
-    padding: 50px;
+    padding: 0;
     margin: auto;
     margin-top: 40px;
     background-color: rgba(141, 182, 218, 0.3);
@@ -35,26 +39,41 @@ h3 {
     height: 2em;
 }
 
-#submit {
-    width: 10em;
-}
-
-h4 {
+label {
     font-size: 20px;
     position: relative;
 }
 
 .mainbox input[type=text],
-input[type=time] {
+input[type=time],
+input[type=date] {
+    position: relative;
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
+    display: block;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-.date {
-    margin-top: 10px;
+input[type=file] {
+    font-size: x-small;
+    position: relative;
+    float: left;
+}
+
+input[type=submit] {
+    position: relative;
+    right: 0;
+    width: fit-content;
+    float: right;
+    margin: 5px;
+    margin-right: 0;
+}
+
+.mainbox div {
+    clear: both;
+    position: relative;
+    margin: 10px;
+    display: block;
 }

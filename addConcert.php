@@ -1,8 +1,17 @@
 <?php 
+
     require_once "config.php";
+    session_start();
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
     $id = $_GET['username'];
     if(isset($_POST['submit'])){
         $name =$_POST['name'];
+        $type =$_POST['type'];
         $details =$_POST['details'];
         $date =$_POST['date'];
         $startTime =$_POST['startTime'];
@@ -61,7 +70,7 @@
                 echo "SQL error";
                 exit();
             }else{
-                mysqli_stmt_bind_param($stmt, "sssssss", $name, $details, $date, $startTime, $endTime, $adminID, $target_file);
+                mysqli_stmt_bind_param($stmt, "sssssss", $name, $type, $date, $startTime, $endTime, $adminID, $target_file);
                 mysqli_stmt_execute($stmt);
             }    
             header("Location: addNewConcert.php?username=$id&submit=success");
@@ -71,5 +80,6 @@
     else{
         header("Location: addNewConcert.php");
         exit();
-    }\mysqli_close($link);
+    }
+    mysqli_close($link);
 ?>

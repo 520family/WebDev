@@ -45,7 +45,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>Document</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleAdmin.css">
-    <a href="logout.php" class="logout-button">Logout</a>
+    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <body>
     <?php include "adminHeader.html" ?>
@@ -54,6 +54,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h3>User Reservation</h3>
     </div>
     <div class="mainbox">
+    <div class="column">
+            <form action="admin_process_search.php?username=<?php echo $id; ?>" id="reservation-form2" method="post" onsubmit="myFunction()">
+                <div class="field">
+                    <input type="text" placeholder="Search the Reservation by ID Here..." id="search222" name="searching2">
+                    <button value="search" alt="icon" id="topIcon"><img src ='image/search.png'></button>
+                </div>
+            </form>
+            <div class="clear"></div>
+        </div>
         <table>
             <tr>
                 <th>ID</th>

@@ -92,3 +92,24 @@ li a:hover {
     display: block;
     margin: auto;
 }
+
+.field input {
+    width: 080%;
+    height: 2em;
+    font-size: 22px;
+    float: left;
+}
+
+.mainbox form {
+    width: 100%;
+    margin: 10px;
+}
+
+.mainbox .field img {
+    display: inline-block;
+    height: 3em;
+}
+
+.mainbox .field button {
+    float: left;
+}

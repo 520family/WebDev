@@ -20,7 +20,8 @@ $reservations = "SELECT  id, code, status, concert_id FROM reservation WHERE use
     <title>Concert Ticketing System</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/UserReservation.css">
-    <a href="logout.php" class="logout-button">Logout</a>
+    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
+
 </head>
 <body>
     <?php include "userHeader.php" ?>
