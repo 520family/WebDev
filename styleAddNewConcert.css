@@ -20,8 +20,8 @@ h3 {
 }
 
 .mainbox {
-    width: 70%;
-    height: auto;
+    width: auto;
+    height: 50%;
     border: 2px solid #000000;
     padding: 50px;
     margin: auto;

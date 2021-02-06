@@ -1,90 +1,49 @@
-body
-{
+body {
+    height: 100%;
+    width: 100%;
     background-color: #282828;
+    background: url("image/userprofilebg.jpg");
+    background-position-x: center;
 }
 
-h3
-{
+h3 {
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     color: aliceblue;
 }
 
-.heading
-{
-    width: 300px;
-    border: 15px solid aliceblue;
-    padding: 10px;
-    margin: 20px 30px 15px 550px;
+.heading {
+    width: 30%;
+    border: 3px solid rgba(92, 255, 255, 0.473);
+    padding: 0px;
+    margin: auto;
+    background-color: rgba(141, 182, 218, 0.966);
 }
 
-.mainbox
-{
-    width: 1250px;
-    height: auto;
+.mainbox {
+    width: 50%;
+    height: 50%;
     border: 2px solid #000000;
     padding: 50px;
-    margin: 40px 20px 20px 60px;
-    background-color:aliceblue;
+    margin: auto;
+    margin-top: 40px;
+    background-color: rgba(141, 182, 218, 0.3);
 }
 
-h4
-{
+table {
+    background-color: rgba(199, 211, 221, 0.603);
+    width: auto;
+}
+
+table,
+tr,
+td {
+    padding: 15px;
     text-align: left;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 28px;
+    border: 1px solid #000000;
 }
 
-.content1
-{
-    width: 800px;
-    height: 50px;
-    border: 3px solid blue;
-    padding: 1px;
-    margin: 30px 5px 10px -100px;
-    background-color: #CCCCFF;
-}
-
-.content2
-{
-    width: 800px;
-    height: 50px;
-    border: 3px solid blue;
-    padding: 1px;
-    margin: 30px 5px 10px -100px;
-    background-color: #CCCCFF;
-}
-
-.content3
-{
-    width: 800px;
-    height: 50px;
-    border: 3px solid blue;
-    padding: 1px;
-    margin: 30px 5px 10px -100px;
-    background-color: #CCCCFF;
-}
-
-.content4
-{
-    width: 800px;
-    height: 50px;
-    border: 3px solid blue;
-    padding: 1px;
-    margin: 30px 5px 10px -100px;
-    background-color: #CCCCFF;
-}
-
-
-.column {
-    float: left;
-    width: 33.33%;
-    padding: 5px;
-  }
-
-.row::after 
-{
-    content: "";
-    clear: both;
-    display: table;
+.content {
+    width: 100%;
+    padding-left: 5px;
 }

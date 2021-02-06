@@ -1,5 +1,5 @@
 <div class=top>
-    <h2>Concert Ticketing System</h2>
+  <img class="logo" src="image/logo.png">
     <div class="row">
         <div class="column">
           <form action="process_search.php?username=<?php echo $id; ?>" id="reservation-form" method="post" onsubmit="myFunction()">

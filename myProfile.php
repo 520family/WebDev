@@ -16,67 +16,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="headerstyle.css">
     <link rel="stylesheet" href="styleMyProfile.css">
     <a href="logout.php" class="logout-button">Logout</a>
 </head>
 <?php
 $sql= "select * FROM user where user_id='$loggedin_id'";
 $result=mysqli_query($link,$sql);
-?>
-<?php
-while($rows=mysqli_fetch_array($result)){
+$rows=mysqli_fetch_array($result)
 ?>
 <body>
     <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
     <div class="heading">
-        <h3>Heading - My Profile</h3>
+        <h3>My Profile</h3>
     </div>
     <div class="mainbox">
-        <div class="row">
-            <div class="column">
-                <h4>first name</h4>
-            </div>
-            <div class="column">
-                <div class="content1">
-                <?php echo $rows['first_name']; ?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <h4>last name</h4>
-            </div>
-            <div class="column">
-                <div class="content2">
-                <?php echo $rows['last_name']; ?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <h4>address</h4>
-            </div>
-            <div class="column">
-                <div class="content3">
-                <?php echo $rows['address']; ?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <h4>phone number</h4>
-            </div>
-            <div class="column">
-                <div class="content4">
-                <?php echo $rows['phone_num']; ?>
-                </div>
-            </div>
-        </div>
-        <?php 
-        // close while loop 
-        }
-        ?>
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td class="content"><?php echo $rows['first_name']; ?></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td class="content"><?php echo $rows['last_name']; ?></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td class="content"><?php echo $rows['address']; ?></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td class="content"><?php echo $rows['phone_num']; ?></td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
