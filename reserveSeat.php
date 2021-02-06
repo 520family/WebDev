@@ -6,6 +6,7 @@
         $selected_seats = $_SESSION['selected_seats'];
         $total_price = $_SESSION['total_price'];
         $status = 0;
+        $success = 0;
         $insert_reservation = "INSERT INTO reservation (user_id, status, concert_id, total_price) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($link);
         if(!mysqli_stmt_prepare($stmt, $insert_reservation)){
@@ -24,9 +25,10 @@
                 }else{
                     mysqli_stmt_bind_param($stmt_seat, "ss", $selected_seat, $reservation_id);
                      mysqli_stmt_execute($stmt_seat);
+                     $success =1;
                 }
             }
         }
 
-        header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id");
+        header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id&success=$success");
 ?> 

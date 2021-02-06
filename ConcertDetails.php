@@ -29,6 +29,12 @@
         }
     }
 
+    if(isset($_GET["success"])){
+        echo "<script>";
+        echo "window.alert('Reservation is successful!');";
+        echo "window.location = './homepage.php?"."username=".$id."';";
+        echo "</script>";
+    }
     function printSeats($concert_id, $seats_row, $reservations, $link, $id){
         $x = 1;
         $seat = array(
@@ -109,7 +115,7 @@
     <br>
     <div class="a">
         <h4>Seat Arrangement</h4>
-            <script>
+            <script type="text/javascript">
                 if (typeof has_seat == "undefined"){
                     var has_seat = false; 
                     has_seat = false;                 
@@ -118,8 +124,6 @@
                     if(!has_seat){
                        alert("Please select a seat before you reserve");
                        return false;
-                    }else if(has_seat){
-                        alert("Reservation is successful!");
                     }
             }
             </script> 

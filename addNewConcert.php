@@ -8,6 +8,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 $id = $_GET["username"];
 
+if(isset($_GET["submit"])){
+    echo "<script>";
+    echo "window.alert('Insert Successfully');";
+    echo "window.location = './homepage.php?"."username=".$_GET['username']."';";
+    echo "</script>";
+}
+
 ?>
 
 <!DOCTYPE html>
