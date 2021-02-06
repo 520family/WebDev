@@ -5,8 +5,8 @@
         $concert_id = $_GET["concert_id"];
         if(isset($_POST['selected_seat'])) {
             $selected_seats = $_SESSION['seats'];
-            $seat_price =array();
-            $total_price = $_SESSION["total_price"];
+            $seat_price = array();
+            $total_price = 0;
             $index = 0;
             $selected_seats = $_POST['selected_seat']; 
             foreach($selected_seats as $selected_seat){
@@ -31,5 +31,6 @@
         $_SESSION["seats"] = $selected_seats;
         $_SESSION["price"] = $seat_price;
         $_SESSION["total_price"] = $total_price;
+        $_SESSION["is_updated"] = true;
         header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id");
 ?> 

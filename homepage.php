@@ -8,7 +8,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-$id = $_GET['username'];
+$id = $_GET["username"];
 $concerts = "SELECT  id, image_path FROM concert";
 ?>
 
@@ -27,7 +27,7 @@ $concerts = "SELECT  id, image_path FROM concert";
     <?php include "userNavigation.php" ?>
     <div class="images">
     <?php if($result = mysqli_query($link, $concerts)){
-                        $username = $_GET['username'];
+                        $username = $_GET["username"];
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){  
                                 $img_src = $row['image_path'];

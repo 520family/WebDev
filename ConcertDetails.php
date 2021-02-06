@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="headerstyle.css">
+=======
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="concertDetails.css">
 </head>
 <?php 
@@ -56,7 +59,7 @@
             array(false, false, false, false, false, false, false, false, false, false),
             array(false, false, false, false, false, false, false, false, false, false),
         );
-        echo "<form action='update.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
+        echo "<form action='updateConcert.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
         for ($i = 0; $i < 10; $i++){
             echo"<tr>"; 
             echo "<td>";
@@ -68,9 +71,11 @@
                             $occupy[$i][$j] = true;
                     }
                 }
-                echo "<input id='seat-".$x."' class='seat-select' type='checkbox' name='selected_seat[]' value='".$seat[$i][$j]."'";
+                echo "<input id='seat-".$x."' type='checkbox' name='selected_seat[]' value='".$seat[$i][$j]."'";
                 if($occupy[$i][$j]){
-                    echo " checked disabled='disabled'";
+                    echo " class='seat-occupy' checked disabled='disabled'";
+                }else{
+                    echo " class='seat-select'";
                 }
                 echo "/>";
                 echo "<label for='seat-".$x."' class='seat'></label>";
@@ -119,47 +124,61 @@
             </table>
             <section class="details">
                 <?php
-                 $_SESSION["total_price"] = 0;  
+                 if(!isset($_SESSION["is_updated"])){
+                    $_SESSION["is_updated"] = false; 
+                    $_SESSION["total_price"] = 0; 
+                }
+
                  echo "<img src=".$img_src.">"; 
                  echo "<h4>Details: </h4>";    
                  echo "<p>".$details."</p>";
+<<<<<<< Updated upstream
                  echo "<h4>Date: ".$date. "</h4>";    
                  echo "<h4>Time:  ".$start_time." - ".$end_time. "</h4>";    
                 ?>
             </section>
                 <?php
+=======
+                 echo "<h4>Date: </h4>";    
+                 echo "<p>".$date."</p>";
+                 echo "<h4>Time </h4>";    
+                 echo "<p>".$start_time." - ".$end_time."</p>";
+                echo"</section>";
+
+>>>>>>> Stashed changes
                 echo"<article class='calculate'>";
                 echo "<h4>Seat selected: </h4>";
-                $selected_seats = $_SESSION["seats"];
-                $seat_price = $_SESSION["price"];
-                $total_price = $_SESSION["total_price"]; 
-                
                 echo "<div id='mainbox'>";
-                    echo "<table>";
-                        echo  "<tr>";
-                                echo "<th>Selected Seat</th>";
-                                echo "<th>Price</th>";
-                        echo  "</tr>";
+                echo "<table>";
+                    echo  "<tr>";
+                            echo "<th>Selected Seat</th>";
+                            echo "<th>Price</th>";
+                    echo  "</tr>";
+                if($_SESSION["is_updated"]){
+                    $selected_seats = $_SESSION["seats"];
+                    $seat_price = $_SESSION["price"];
+                    $total_price = $_SESSION["total_price"];   
                         foreach(array_combine($selected_seats, $seat_price) as $seat => $price){
                             echo "<tr>";
-
-                            if(empty($selected_seats)){
-                                $selected_seat_error = "None of the seat is selected yet";
-                                echo "<td>". $selected_seat_error. "</td>";
-                            }else{
-                                echo "<td>" . $seat . "</td>";
-                            }
-                            
-                            if(empty($seat_price)){
-                                $price_error = "RM0";
-                                echo "<td>". $price_error ."</td>";
-                            }else{
-                                echo "<td>RM". $price . "</td>";
-                            }
+                            echo "<td>" . $seat . "</td>";
+                            echo "<td>RM". $price . "</td>";
                             echo "<tr>";
                         }
-                    echo "</table>";
+                        echo "<tr><td colspan='2'>Total price RM: $total_price </td></tr>";
+                   $_SESSION["selected_seats"] = $selected_seats;
+                   $_SESSION["total_price"] = $total_price;
+                }else{
+                    echo "<tr>";
+                    $selected_seat_error = "None of the seat is selected yet";
+                    echo "<td>". $selected_seat_error. "</td>";
+                    $price_error = "RM0";
+                    echo "<td>". $price_error ."</td>";
+                    echo "<tr>";
+                }
+                echo "</table>";
                 echo "</div>";
+                echo "<a href='reserveSeat.php?username=".$id."&concert_id=".$concert_id."'><button>Reserve</button></a></td>"; 
+                echo "</form>";
                 echo"</article>";
                 //echo "<td><a href='editConcert.php?username=".$id."&concert_id=".$row['id']."'><button><img src ='image/edit.png'></button></a></td>";
             ?>  
