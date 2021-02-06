@@ -109,6 +109,19 @@
     <br>
     <div class="a">
         <h4>Seat Arrangement</h4>
+            <script>
+                if (typeof has_seat == "undefined"){
+                    var has_seat = false;                  
+                }
+            function validateReserve() {
+                    if(!has_seat){
+                       alert("Please select a seat before you reserve");
+                       return false;
+                    }else if(has_seat){
+                        alert("Reservation is successful!");
+                    }
+            }
+            </script> 
             <table class="tableseat">
                 <?php
                     $seats = "SELECT * from seat";
@@ -124,6 +137,7 @@
                  if(!isset($_SESSION["is_updated"])){
                     $_SESSION["is_updated"] = false; 
                     $_SESSION["total_price"] = 0; 
+                    $_SESSION["has_seat"] = false;
                 }
 
                  echo "<img src=".$img_src.">"; 
@@ -155,6 +169,10 @@
                         echo "<tr><td colspan='2'>Total price RM: $total_price </td></tr>";
                    $_SESSION["selected_seats"] = $selected_seats;
                    $_SESSION["total_price"] = $total_price;
+                   echo "<script>
+                        has_seat = true;
+                        console.log(has_seat);
+                   </script>";
                 }else{
                     echo "<tr>";
                     $selected_seat_error = "None of the seat is selected yet";
@@ -168,17 +186,7 @@
                 echo "<a href='reserveSeat.php?username=".$id."&concert_id=".$concert_id."'><button onclick='validateReserve()'>Reserve</button></a></td>"; 
                 echo "</form>";
                 echo"</article>";
-                //echo "<td><a href='editConcert.php?username=".$id."&concert_id=".$row['id']."'><button><img src ='image/edit.png'></button></a></td>";
             ?> 
-            <script>
-            function validateReserve() {
-                var  selected_seat = <?php $selected_seats ?>;
-                if (selected_seat == null || selected_seat == "") {
-                    alert("Please enter> the username. Can’t be blank or empty !!!");
-                    return false;
-                }
-            }
-            </script> 
     </div>
 
 

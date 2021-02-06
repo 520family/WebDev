@@ -1,6 +1,5 @@
 <?php
         session_start();
-
         require_once "config.php";
         $id = $_GET["username"];
         $concert_id = $_GET["concert_id"];
@@ -28,20 +27,6 @@
                 }
             }
         }
-        /*} else {
-        
-                echo "
-                    <script type=\"text/javascript\">
-                    alert('You need to select a seat');
-                    </script>
-                ";
-                header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id");
 
-        }*/
-        echo "
-        <script type=\"text/javascript\">
-            alert('Reservation is successful!');
-        </script>
-        ";
         header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id");
 ?> 
