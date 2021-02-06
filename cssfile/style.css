@@ -11,7 +11,7 @@ html {
 
 body {
     background-color: white;
-    background: url("image/profilebg.jpg");
+    background: url("../image/profilebg.jpg");
     background-position: center bottom;
     background-size: 100% 100%;
 }

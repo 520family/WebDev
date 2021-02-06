@@ -2,7 +2,7 @@
     float: left;
     display: block;
     margin: 5px;
-    background-image: url("image/seat-green.png");
+    background-image: url("../image/seat-green.png");
     width: 50px;
     height: 50px;
 }
@@ -12,24 +12,24 @@
 }
 
 .seat-select:checked+.seat {
-    background-image: url("image/seat-red.png");
+    background-image: url("../image/seat-red.png");
 }
 
-.seat-occupy{
+.seat-occupy {
     float: left;
     display: block;
     margin: 5px;
-    background-image: url("image/seat-green.png");
+    background-image: url("../image/seat-green.png");
     width: 50px;
     height: 50px;
 }
 
-.seat-occupy{
+.seat-occupy {
     display: none;
 }
 
-.seat-occupy:checked+.seat{
-    background-image: url("image/seat-occupied.png");
+.seat-occupy:checked+.seat {
+    background-image: url("../image/seat-occupied.png");
 }
 
 .details {

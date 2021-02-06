@@ -68,7 +68,7 @@ h2 {
     content: ' ';
     display: block;
     position: absolute;
-    background-image: url("image/topbg.png");
+    background-image: url("../image/topbg.png");
     background-size: auto;
     top: 0;
     left: 0;
