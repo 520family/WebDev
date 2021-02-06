@@ -105,7 +105,9 @@
         <form action="<?php $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']?>" method="POST"  enctype="multipart/form-data">
             <div>
                 <label>Name</label>
-                <input type="text" name="newname" value=<?php echo $row["name"]?>>
+                <input type="text" name="newname" value=<?php 
+                
+                echo $row["name"]?>>
             </div>
             <div>
                 <label>Type</label>
@@ -113,7 +115,8 @@
             </div>
             <div>
                 <label>Details</label>
-                <input type="text" name="newdetails" value=<?php echo $row["details"]?>>
+                <?php $string = $row["details"]; ?>
+                <input type="text" name="newdetails" value="<?php echo $string;?>">
             </div>
             <div>
                 <label>Date</label>
