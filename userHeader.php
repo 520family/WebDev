@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class=top>
   <img class="logo" src="image/logo.png">
     <div class="row">
