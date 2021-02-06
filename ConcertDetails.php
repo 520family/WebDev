@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<<<<<<< Updated upstream
     <link rel="stylesheet" href="headerstyle.css">
-=======
->>>>>>> Stashed changes
     <link rel="stylesheet" href="concertDetails.css">
 </head>
 <?php 
@@ -132,20 +129,11 @@
                  echo "<img src=".$img_src.">"; 
                  echo "<h4>Details: </h4>";    
                  echo "<p>".$details."</p>";
-<<<<<<< Updated upstream
                  echo "<h4>Date: ".$date. "</h4>";    
                  echo "<h4>Time:  ".$start_time." - ".$end_time. "</h4>";    
                 ?>
             </section>
                 <?php
-=======
-                 echo "<h4>Date: </h4>";    
-                 echo "<p>".$date."</p>";
-                 echo "<h4>Time </h4>";    
-                 echo "<p>".$start_time." - ".$end_time."</p>";
-                echo"</section>";
-
->>>>>>> Stashed changes
                 echo"<article class='calculate'>";
                 echo "<h4>Seat selected: </h4>";
                 echo "<div id='mainbox'>";
@@ -177,11 +165,20 @@
                 }
                 echo "</table>";
                 echo "</div>";
-                echo "<a href='reserveSeat.php?username=".$id."&concert_id=".$concert_id."'><button>Reserve</button></a></td>"; 
+                echo "<a href='reserveSeat.php?username=".$id."&concert_id=".$concert_id."'><button onclick='validateReserve()'>Reserve</button></a></td>"; 
                 echo "</form>";
                 echo"</article>";
                 //echo "<td><a href='editConcert.php?username=".$id."&concert_id=".$row['id']."'><button><img src ='image/edit.png'></button></a></td>";
-            ?>  
+            ?> 
+            <script>
+            function validateReserve() {
+                var  selected_seat = <?php $selected_seats ?>;
+                if (selected_seat == null || selected_seat == "") {
+                    alert("Please enter> the username. Can’t be blank or empty !!!");
+                    return false;
+                }
+            }
+            </script> 
     </div>
 
 

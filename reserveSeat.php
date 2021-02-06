@@ -1,10 +1,6 @@
 <?php
         session_start();
-        echo "
-        <script type=\"text/javascript\">
-            alert('Reservation is successful!');
-        </script>
-        ";
+
         require_once "config.php";
         $id = $_GET["username"];
         $concert_id = $_GET["concert_id"];
