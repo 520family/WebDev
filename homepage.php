@@ -26,13 +26,17 @@ $concerts = "SELECT  id, image_path FROM concert";
     <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
     <div class="images">
-    <?php if($result = mysqli_query($link, $concerts)){
+    <?php
+    
+
+    if($result = mysqli_query($link, $concerts)){
                         $username = $_GET["username"];
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){  
                                 $img_src = $row['image_path'];
                                 $concert_id = $row['id'];
                                 echo "<a href='ConcertDetails.php?username=".$id."&concert_id=".$concert_id."'><img src=".$img_src."></a>";
+                                
                             }
                         }
                     }
