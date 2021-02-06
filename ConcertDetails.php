@@ -111,7 +111,8 @@
         <h4>Seat Arrangement</h4>
             <script>
                 if (typeof has_seat == "undefined"){
-                    var has_seat = false;                  
+                    var has_seat = false; 
+                    has_seat = false;                 
                 }
             function validateReserve() {
                     if(!has_seat){
