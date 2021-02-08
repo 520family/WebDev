@@ -1,7 +1,7 @@
 <?php
     require_once "config.php";
     $id = $_GET['username'];
-    $concertid = $_GET['concert_id'];
+    $concertid = $_GET["concert_id"];
     $sql = "SELECT * from concert where id =$concertid";
     $result = $link->query($sql);
     $row = $result->fetch_assoc();
@@ -18,17 +18,16 @@
     $newdate = $_POST["newdate"];
     $newstartTime = $_POST["newstartTime"];
     $newendTime = $_POST["newendTime"];
-    $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate'";
+    $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate' AND id <> '$concertid'";
     $result = mysqli_query($link,$checktime);
     while($row = mysqli_fetch_assoc($result)){        
         if($row["name"] != "$newname"){
             if($row["date" ]== "$newdate"){
                if($row["start_time"]>=$newstartTime && $row["start_time"]<=$newendTime){
-
-                    header("Location: editConcert.php?username=$id&submit=start_time_clash");
+                    header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=start_time_clash");
                     exit();
                 } elseif($row["end_time"]<=$newendTime && $row["end_time"] >= $newstartTime){
-                    header("Location: editConcert.php?username=$id&submit=end_time_clash");
+                    header("Location: editHomepage.php?username=$id&concert_id=$concertid&submit=end_time_clash");
                     exit();
                 } 
             } 
@@ -49,38 +48,92 @@
             echo "File is not an image.";
             $uploadOk = 0;
         }
-    
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-          // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-              echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-              $upfile = "UPDATE concert SET image_path = '$target_file' WHERE id = $concertid";
-              if(mysqli_query($link,$upfile)){
-                echo "Record updated successfully";
-              }else{
-                echo "Error updating record: " . mysqli_error($link); 
-              }
-            
+
+        if ($_FILES["fileToUpload"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        
+        if(empty($newname) || empty($newdetails) || empty($newdate) || empty($newstartTime) || empty($newendTime) || empty($target_file)){
+            header("Location: addNewConcert.php?username=$id&concert_id=$concertid&submit=empty");
+            exit();
+        }else{
+            if ($uploadOk == 0) {
+                header("Location: addNewConcert.php?username=$id&concert_id=$concertid&submit=file_upload_error");
+                exit();
+              // if everything is ok, try to upload file
             } else {
-              echo "Sorry, there was an error uploading your file.";
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                  echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+                  $upfile = "UPDATE concert SET image_path = '$target_file' WHERE id = $concertid";
+                  if(mysqli_query($link,$upfile)){
+                    echo "Record updated successfully";
+                  }else{
+                    echo "Error updating record: " . mysqli_error($link); 
+                  }
+                
+                } else {
+                  echo "Sorry, there was an error uploading your file.";
+                }
             }
         }
     }
     
     $edit = "UPDATE concert SET name = '$newname', type = '$newtype', details = '$newdetails', date = '$newdate',
     start_time = '$newstartTime',
-    end_time = '$newendTime' 
+    end_time = '$newendTime', 
+    image_path = '$target_file'
     WHERE id = $concertid";
     
     if(mysqli_query($link,$edit)){
         echo "Record updated successfully";
-        header("location: adminHomepage.php?username=$id");
-
+        header("Location: adminHomepage.php?username=$id&submit=success");
+        exit();
     } else {
         echo "Error updating record: " . mysqli_error($link);
     }
+}
+
+if(isset($_GET["submit"])){
+    if(strcmp($_GET["submit"], "success") == 0){
+        echo "<script>";
+        echo "window.alert('Insert Successfully');";
+        echo "window.location = './adminHomepage.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }
+    else if(strcmp($_GET["submit"], "empty") == 0){
+        echo "<script>";
+        echo "window.alert('Please fill in all required fields');";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."'';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "start_time_clash") == 0){
+        echo "<script>";
+        echo "window.alert('Please pick another date or start time, it is clashed with other concert.');";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."'';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "end_time_clash") == 0){
+        echo "<script>";
+        echo "window.alert('Please pick another date or end time, it is clashed with other concert.');";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."'';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "concert_name_clash") == 0){
+        echo "<script>";
+        echo "window.alert('Please pick another concert name, it is clashed with other concert.');";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "file_upload_error") == 0){
+        echo "<script>";
+        echo "window.alert('Please ensure the file you upload is an image, png/jpg/jpeg/gif type file and less than 5MB.');";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."';";
+        echo "</script>";
+    } 
 }
 ?>
 

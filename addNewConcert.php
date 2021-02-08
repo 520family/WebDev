@@ -40,10 +40,7 @@ if(isset($_GET["submit"])){
         echo "window.alert('Please ensure the file you upload is an image, png/jpg/jpeg/gif type file and less than 5MB.');";
         echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
         echo "</script>";
-    }
-
-    
-
+    } 
 }
 
 ?>
