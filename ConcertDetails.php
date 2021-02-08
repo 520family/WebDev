@@ -16,10 +16,11 @@
     }
     $id = $_GET['username'];
     $concert_id = $_GET["concert_id"];
-    $concert = "SELECT  id, image_path, details, date , start_time, end_time FROM concert WHERE id = '$concert_id'";
+    $concert = "SELECT  id,name, image_path, details, date , start_time, end_time FROM concert WHERE id = '$concert_id'";
     if($result = mysqli_query($link, $concert)){
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_array($result)){  
+                $name = $row['name'];
                 $img_src = $row['image_path'];
                 $details = $row['details'];
                 $date = $row['date'];
@@ -150,78 +151,90 @@
                     }
             }
             </script> 
-            <table class="tableseat">
-                <tr><th colspan='11'>Seat Arrangement</th></tr>
-                <tr><td colspan='11'><div id="stage">STAGE</div></tr>
-                <?php
-                    $seats = "SELECT * from seat";
-                    $reservations = "SELECT reservation.concert_id, reservation_seat.seat_id from reservation INNER JOIN reservation_seat ON reservation.id = reservation_seat.reservation_id";
-                        if($seats_result = mysqli_query($link, $seats)){
-                            $seats_row = mysqli_fetch_array($seats_result);
-                            if(!isset($_SESSION["seats"])){
-                                printSeats($concert_id, $seats_row, $reservations, $link, $id, null); 
-                            }else{
-                                $selected_seats = $_SESSION["seats"];
-                                printSeats($concert_id, $seats_row, $reservations, $link, $id, $selected_seats);    
-                            }       
-                        }
-                ?>  
-            </table>
-            <section class="details">
-                <?php
-                 if(!isset($_SESSION["is_updated"])){
-                    $_SESSION["is_updated"] = false; 
-                    $_SESSION["total_price"] = 0; 
-                    $_SESSION["has_seat"] = false;
-                }
-
-                 echo "<img src=".$img_src.">"; 
-                 echo "<h4>Details: </h4>";    
-                 echo "<p>".$details."</p>";
-                 echo "<h4>Date: ".$date. "</h4>";    
-                 echo "<h4>Time:  ".$start_time." - ".$end_time. "</h4>";    
-                ?>
-            </section>
-                <?php
-                echo"<section class='calculate details'>";
-                echo "<h4>Seat selected: </h4>";
-                echo "<div id='mainbox'>";
-                echo "<table>";
-                    echo  "<tr>";
-                            echo "<th>Selected Seat</th>";
-                            echo "<th>Price</th>";
-                    echo  "</tr>";
-                if($_SESSION["is_updated"] && !is_null($_SESSION["seats"])){
-                    $selected_seats = $_SESSION["seats"];
-                    $seat_price = $_SESSION["price"];
-                    $total_price = $_SESSION["total_price"];   
-                        foreach(array_combine($selected_seats, $seat_price) as $seat => $price){
+            <table class="outertable">
+                <tr><th colspan="2"><?php echo $name?></th></tr>
+                <tr>
+                    <td rowspan="2">
+                        <table class="tableseat">
+                            <tr><th colspan='11'>Seat Arrangement</th></tr>
+                            <tr><td colspan='11'><div id="stage">STAGE</div></tr>
+                            <?php
+                                $seats = "SELECT * from seat";
+                                $reservations = "SELECT reservation.concert_id, reservation_seat.seat_id from reservation INNER JOIN reservation_seat ON reservation.id = reservation_seat.reservation_id";
+                                    if($seats_result = mysqli_query($link, $seats)){
+                                        $seats_row = mysqli_fetch_array($seats_result);
+                                        if(!isset($_SESSION["seats"])){
+                                            printSeats($concert_id, $seats_row, $reservations, $link, $id, null); 
+                                        }else{
+                                            $selected_seats = $_SESSION["seats"];
+                                            printSeats($concert_id, $seats_row, $reservations, $link, $id, $selected_seats);    
+                                        }       
+                                    }
+                            ?>  
+                        </table>
+                    </td>
+                    <td>
+                        <section class="details">
+                            <?php
+                            if(!isset($_SESSION["is_updated"])){
+                                $_SESSION["is_updated"] = false; 
+                                $_SESSION["total_price"] = 0; 
+                                $_SESSION["has_seat"] = false;
+                            }
+                            echo "<table><tr>";
+                            echo "<td><img src=".$img_src."></td>"; 
+                            echo "<td><h4>Details: </h4>";    
+                            echo $details."<br/>";
+                            echo "<h4>Date: ".$date. "</h4>";    
+                            echo "<h4>Time:  ".$start_time." - ".$end_time. "</h4>";    
+                            echo "</td></tr></table>";
+                            ?>
+                        </section>
+                    </td>
+                <tr>
+                    <td>
+                        <?php
+                        echo"<section class='calculate details'>";
+                        echo "<h4>Seat selected: </h4>";
+                        echo "<div id='mainbox'>";
+                        echo "<table>";
+                            echo  "<tr>";
+                                    echo "<th>Selected Seat</th>";
+                                    echo "<th>Price</th>";
+                            echo  "</tr>";
+                        if($_SESSION["is_updated"] && !is_null($_SESSION["seats"])){
+                            $selected_seats = $_SESSION["seats"];
+                            $seat_price = $_SESSION["price"];
+                            $total_price = $_SESSION["total_price"];   
+                                foreach(array_combine($selected_seats, $seat_price) as $seat => $price){
+                                    echo "<tr>";
+                                    echo "<td>" . $seat . "</td>";
+                                    echo "<td>RM". $price . "</td>";
+                                    echo "<tr>";
+                                }
+                                echo "<tr><td colspan='2'>Total price RM: $total_price </td></tr>";
+                        $_SESSION["selected_seats"] = $selected_seats;
+                        $_SESSION["total_price"] = $total_price;
+                        echo "<script>
+                                has_seat = true;
+                                console.log(has_seat);
+                        </script>";
+                        }else{
                             echo "<tr>";
-                            echo "<td>" . $seat . "</td>";
-                            echo "<td>RM". $price . "</td>";
+                            $selected_seat_error = "None of the seat is selected yet";
+                            echo "<td>". $selected_seat_error. "</td>";
+                            $price_error = "RM0";
+                            echo "<td>". $price_error ."</td>";
                             echo "<tr>";
                         }
-                        echo "<tr><td colspan='2'>Total price RM: $total_price </td></tr>";
-                   $_SESSION["selected_seats"] = $selected_seats;
-                   $_SESSION["total_price"] = $total_price;
-                   echo "<script>
-                        has_seat = true;
-                        console.log(has_seat);
-                   </script>";
-                }else{
-                    echo "<tr>";
-                    $selected_seat_error = "None of the seat is selected yet";
-                    echo "<td>". $selected_seat_error. "</td>";
-                    $price_error = "RM0";
-                    echo "<td>". $price_error ."</td>";
-                    echo "<tr>";
-                }
-                echo "</table>";
-                echo "</div>";
-                echo "<a href='reserveSeat.php?username=".$id."&concert_id=".$concert_id."'><button onclick='validateReserve()'>Reserve</button></a></td>"; 
-                echo "</form>";
-                echo"</section>";
-            ?> 
+                        echo "</table>";
+                        echo "</div>";
+                        echo "<a href='reserveSeat.php?username=".$id."&concert_id=".$concert_id."'><button onclick='validateReserve()'>Reserve</button></a></td>"; 
+                        echo "</form>";
+                        echo"</section>";
+                        ?> 
+                    </td>
+            </tr>
     </div>
 
 

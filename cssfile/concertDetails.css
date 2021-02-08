@@ -1,11 +1,32 @@
+body {
+    height: 100%;
+    width: 99%;
+    background-image: url(../image/profilebg.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
 .seat {
     display: block;
-    margin: auto;
     background-image: url("../image/seat-green.png");
     background-size: cover;
     background-position: center;
     width: 40px;
     height: 35px;
+}
+
+table,
+th {
+    /*background-color: rgba(rgba(146, 114, 114, 0.822));*/
+    background-color: rgba(0, 128, 128, .2);
+    border: 1px solid black;
+    text-align: center;
+    margin: auto;
+}
+
+#stage {
+    height: 30px;
+    background-color: orange;
 }
 
 .seat-select {
@@ -32,37 +53,6 @@
     background-image: url("../image/seat-occupied.png");
 }
 
-.tableseat {
-    float: left;
-    background-color: white;
-}
-
-section.details {
-    width: 40%;
-    height: 50%;
-    background-color: grey;
-    height: min-content;
-    top: 0;
-    overflow: auto;
-    padding-top: 15px;
-    padding-bottom: 25px;
-    border: 1px solid black;
-    /* only for demonstration, should be removed */
-}
-
-article.calculate {
-    width: 40%;
-    background-color: grey;
-    height: 90px;
-    /* only for demonstration, should be removed */
-}
-
-#pay {
-    float: right;
-    width: 10em;
-    height: 2em;
-}
-
 section img {
     float: left;
     top: 0;
@@ -70,16 +60,8 @@ section img {
     height: 320px;
 }
 
-table,
-th {
-    border: 1px solid black;
-    text-align: center;
-}
-
-table {
-    width: 40%;
-    border-collapse: collapse;
-    margin: auto;
+.details button {
+    float: right;
 }
 
 input[type=submit] {
@@ -88,23 +70,6 @@ input[type=submit] {
     left: auto;
 }
 
-.submitbtn {
-    width: 50px;
-    height: 100px;
-}
-
-#stage {
-    height: 30px;
-    background-color: orange;
-}
-
-.details td {
-    border: 1px solid black;
-}
-
-.container {
-    content: "";
-    width: auto;
-    height: max-content;
-    padding: 50px;
+.outertable {
+    width: 80%;
 }
