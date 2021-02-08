@@ -18,6 +18,11 @@
     $newdate = $_POST["newdate"];
     $newstartTime = $_POST["newstartTime"];
     $newendTime = $_POST["newendTime"];
+    $target_dir = "image/";
+    $target_file = $target_dir.uniqid().basename($_FILES['fileToUpload']['name']);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate' AND id <> '$concertid'";
     $result = mysqli_query($link,$checktime);
     while($row = mysqli_fetch_assoc($result)){        
@@ -34,13 +39,11 @@
         } 
     }
 
-    if(!isset($_FILES["fileToUpload"])){
-        $target_dir = "image/";
-        $target_file = $target_dir.uniqid().basename($_FILES['fileToUpload']['name']);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if(empty($newname) || empty($newdetails) || empty($newdate) || empty($newstartTime) || empty($newendTime) || empty($target_file)){
+        header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=empty");
+        exit();
+    }
+
         if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
@@ -60,11 +63,7 @@
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
-        
-        if(empty($newname) || empty($newdetails) || empty($newdate) || empty($newstartTime) || empty($newendTime) || empty($target_file)){
-            header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=empty");
-            exit();
-        }else{
+
             if ($uploadOk == 0) {
                 header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=file_upload_error");
                 exit();
@@ -83,8 +82,7 @@
                   echo "Sorry, there was an error uploading your file.";
                 }
             }
-        }
-    }
+
     
     $edit = "UPDATE concert SET name = '$newname', type = '$newtype', details = '$newdetails', date = '$newdate',
     start_time = '$newstartTime',
@@ -110,27 +108,27 @@ if(isset($_GET["submit"])){
     if(strcmp($_GET["submit"], "empty") == 0){
         echo "<script>";
         echo "window.alert('Please fill in all required fields');";
-        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."'';";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."&concert_id=".$concertid."'';";
         echo "</script>";
     }else if(strcmp($_GET["submit"], "start_time_clash") == 0){
         echo "<script>";
         echo "window.alert('Please pick another date or start time, it is clashed with other concert.');";
-        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."'';";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."&concert_id=".$concertid."'';";
         echo "</script>";
     }else if(strcmp($_GET["submit"], "end_time_clash") == 0){
         echo "<script>";
         echo "window.alert('Please pick another date or end time, it is clashed with other concert.');";
-        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."'';";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."&concert_id=".$concertid."'';";
         echo "</script>";
     }else if(strcmp($_GET["submit"], "concert_name_clash") == 0){
         echo "<script>";
         echo "window.alert('Please pick another concert name, it is clashed with other concert.');";
-        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."';";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."&concert_id=".$concertid."';";
         echo "</script>";
     }else if(strcmp($_GET["submit"], "file_upload_error") == 0){
         echo "<script>";
         echo "window.alert('Please ensure the file you upload is an image, png/jpg/jpeg/gif type file and less than 5MB.');";
-        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."';";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."&concert_id=".$concertid."';";
         echo "</script>";
     } 
 }
