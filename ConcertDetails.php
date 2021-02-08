@@ -32,14 +32,27 @@
     if(isset($_GET["success"]) && $_GET["success"]!=0){
         echo "<script>";
         echo "window.alert('Reservation is successful!');";
-        echo "window.location = './homepage.php?"."username=".$id."';";
         echo "</script>";
         $_SESSION["is_updated"] = false;
         $_SESSION["selected_seats"] = null;
         $_SESSION["price"] = null;
 
     }
-    function printSeats($concert_id, $seats_row, $reservations, $link, $id){
+
+    if(isset($_GET["update"])){
+        if(strcmp($_GET["update"], "success") == 0){
+            echo "<script>";
+            echo "window.alert('Selected seat successfully updated');";
+            echo "window.reload()";
+            echo "</script>";
+        }else if(strcmp($_GET["update"], "failed") == 0){
+            echo "<script>";
+            echo "window.alert('Please select at least a seat to update');";
+            echo "</script>";
+        }
+    }
+
+    function printSeats($concert_id, $seats_row, $reservations, $link, $id, $selected_seats){
         $x = 1;
         $seat = array(
             array("A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "A-8", "A-9", "A-10"),
@@ -66,7 +79,7 @@
             array(false, false, false, false, false, false, false, false, false, false),
             array(false, false, false, false, false, false, false, false, false, false),
         );
-        echo "<form action='editConcertpage.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
+        echo "<form action='updateConcert.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
         for ($i = 0; $i < 10; $i++){
             echo"<tr>"; 
             echo "<td>";
@@ -81,6 +94,18 @@
                 echo "<input id='seat-".$x."' type='checkbox' name='selected_seat[]' value='".$seat[$i][$j]."'";
                 if($occupy[$i][$j]){
                     echo " class='seat-occupy' checked disabled='disabled'";
+                }else if(!is_null($selected_seats)){
+                    $selected = false;
+                    foreach($selected_seats as $selected_seat){
+                        if(strcmp($selected_seat, $seat[$i][$j]) == 0){
+                            echo " class='seat-select' checked";
+                            $selected = true;
+                            break;
+                        }
+                    }
+                    if(!$selected){
+                        echo " class='seat-select'";
+                    }
                 }else{
                     echo " class='seat-select'";
                 }
@@ -96,18 +121,6 @@
         echo "<input type='submit' value='Update' id='submit'>";
         echo "</form>";
     }
-
-    function outputCartRow($file,$product,$quantity,$price){
-
-        $amount = $quantity * $price;
-        echo"<tr>";
-        echo "<td><img class='img-thumbnail' src='images/art/tiny/".$file."' alt='...'></td>";
-        echo "<td>".$product."</td>";
-        echo "<td>".$quantity."</td>";
-        echo "<td>$".$price."</td>";
-        echo "<td>$".$amount."</td>";
-        echo"</tr>";
-      }
 ?>
 <body>
     <?php include "userHeader.php" ?>
@@ -137,7 +150,12 @@
                     $reservations = "SELECT reservation.concert_id, reservation_seat.seat_id from reservation INNER JOIN reservation_seat ON reservation.id = reservation_seat.reservation_id";
                         if($seats_result = mysqli_query($link, $seats)){
                             $seats_row = mysqli_fetch_array($seats_result);
-                            printSeats($concert_id, $seats_row, $reservations, $link, $id); 
+                            if(!isset($_SESSION["seats"])){
+                                printSeats($concert_id, $seats_row, $reservations, $link, $id, null); 
+                            }else{
+                                $selected_seats = $_SESSION["seats"];
+                                printSeats($concert_id, $seats_row, $reservations, $link, $id, $selected_seats);    
+                            }       
                         }
                 ?>  
             </table>
@@ -165,7 +183,7 @@
                             echo "<th>Selected Seat</th>";
                             echo "<th>Price</th>";
                     echo  "</tr>";
-                if($_SESSION["is_updated"]){
+                if($_SESSION["is_updated"] && !is_null($_SESSION["seats"])){
                     $selected_seats = $_SESSION["seats"];
                     $seat_price = $_SESSION["price"];
                     $total_price = $_SESSION["total_price"];   

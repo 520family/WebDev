@@ -32,5 +32,10 @@
         $_SESSION["price"] = $seat_price;
         $_SESSION["total_price"] = $total_price;
         $_SESSION["is_updated"] = true;
-        header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id");
+        if(!is_null($_SESSION["seats"])){
+            header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id&update=success");
+        }else{
+            header("Location: ConcertDetails.php?username=$id&concert_id=$concert_id&update=failed");
+        }
+        
 ?> 
