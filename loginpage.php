@@ -115,11 +115,10 @@
                 <span class="help-block"><?php echo $password_err; ?></span>
 
             <div class="btn_container">
-
-
                 <input type="submit" class="btn btn-primary" value="Login">
-                <span class="#"><a href="adminlogin.php">Login as Admin?</a></span>
-                <span class="#"><a href="registerpage.php">Register</a></span>
+                <input type="button" class="btn btn-primary"  onclick="location.href='adminlogin.php'" value ="Login as Admin"></input>
+                <input type="button" class="btn btn-primary"  onclick="location.href='registerpage.php'" value ="Register"></input>
+            </div>
         </form>
 
     </div>

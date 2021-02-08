@@ -116,6 +116,7 @@
 
             <div class="btn_container">
                 <input type="submit" class="btn btn-primary" value="Login">
+                <input type="button" class="btn btn-primary"  onclick="location.href='loginpage.php'" value ="Back"></input>
             </div>
         </form>
 

@@ -54,18 +54,14 @@
 
     function printSeats($concert_id, $seats_row, $reservations, $link, $id, $selected_seats){
         $x = 1;
-        $seat = array(
-            array("A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "A-8", "A-9", "A-10"),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-            array("", "", "", "", "", "", "", "", "", ""),
-        );
+        $seat = array();
+        for($row = 0; $row < 10;$row++){
+            $alphabet = chr(65 + $row);
+            for($column = 0; $column < 10; $column++){
+                $num = $column + 1;
+                $seat[$row][$column] = "$alphabet-$num";
+            }
+        }
 
         $occupy = array(
             array(false, false, false, false, false, false, false, false, false, false),
@@ -80,10 +76,20 @@
             array(false, false, false, false, false, false, false, false, false, false),
         );
         echo "<form action='updateConcert.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
+        echo"<tr>"; 
+        for ($col = 0; $col <= 10; $col++){
+            echo "<td>";
+            echo "$col";
+            echo "</td>";
+        }
+        echo "</tr>";
         for ($i = 0; $i < 10; $i++){
             echo"<tr>"; 
             echo "<td>";
-            echo "<section id='seat'>";
+            $row = 65 + $i;
+            echo chr($row);
+            echo "</td>";
+            
             for ($j = 0; $j < 10; $j++){
                 if($reservations_result = mysqli_query($link, $reservations)){
                     while($reservations_row = mysqli_fetch_array($reservations_result)){
@@ -91,6 +97,7 @@
                             $occupy[$i][$j] = true;
                     }
                 }
+                echo "<td>";
                 echo "<input id='seat-".$x."' type='checkbox' name='selected_seat[]' value='".$seat[$i][$j]."'";
                 if($occupy[$i][$j]){
                     echo " class='seat-occupy' checked disabled='disabled'";
@@ -112,26 +119,25 @@
                 echo "/>";
                 echo "<label for='seat-".$x."' class='seat'></label>";
                 $x++;
-            }
-            echo "</section>";
             echo "</td>";
+        }
+            
             echo "</tr>";
         }
-        echo "<br/>";
+        echo "<tr>";
+        echo "<td colspan='4'></td>";
+        echo "<td class='submitbtn' colspan='3'>";
         echo "<input type='submit' value='Update' id='submit'>";
+        echo "</td>";
+        echo "<td colspan='4'></td>";
+        echo "</tr>";
         echo "</form>";
     }
 ?>
 <body>
     <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
-  
-    <div class="title">
-        <h3>Concert 1</h3>
-    </div>
-    <br>
-    <div class="a">
-        <h4>Seat Arrangement</h4>
+    <div class="container">
             <script type="text/javascript">
                 if (typeof has_seat == "undefined"){
                     var has_seat = false; 
@@ -145,6 +151,8 @@
             }
             </script> 
             <table class="tableseat">
+                <tr><th colspan='11'>Seat Arrangement</th></tr>
+                <tr><td colspan='11'><div id="stage">STAGE</div></tr>
                 <?php
                     $seats = "SELECT * from seat";
                     $reservations = "SELECT reservation.concert_id, reservation_seat.seat_id from reservation INNER JOIN reservation_seat ON reservation.id = reservation_seat.reservation_id";
@@ -175,7 +183,7 @@
                 ?>
             </section>
                 <?php
-                echo"<article class='calculate'>";
+                echo"<section class='calculate details'>";
                 echo "<h4>Seat selected: </h4>";
                 echo "<div id='mainbox'>";
                 echo "<table>";
@@ -212,7 +220,7 @@
                 echo "</div>";
                 echo "<a href='reserveSeat.php?username=".$id."&concert_id=".$concert_id."'><button onclick='validateReserve()'>Reserve</button></a></td>"; 
                 echo "</form>";
-                echo"</article>";
+                echo"</section>";
             ?> 
     </div>
 

@@ -1,10 +1,11 @@
 .seat {
-    float: left;
     display: block;
-    margin: 5px;
+    margin: auto;
     background-image: url("../image/seat-green.png");
-    width: 50px;
-    height: 50px;
+    background-size: cover;
+    background-position: center;
+    width: 40px;
+    height: 35px;
 }
 
 .seat-select {
@@ -16,7 +17,6 @@
 }
 
 .seat-occupy {
-    float: left;
     display: block;
     margin: 5px;
     background-image: url("../image/seat-green.png");
@@ -32,39 +32,29 @@
     background-image: url("../image/seat-occupied.png");
 }
 
-.details {
-    border-style: solid;
-    height: auto;
-    overflow: auto;
-}
-
 .tableseat {
     float: left;
+    background-color: burlywood;
 }
 
 section.details {
-    float: left;
-    padding: 60px;
     width: 40%;
     height: 50%;
     background-color: grey;
-    height: 300px;
+    height: min-content;
     top: 0;
-    overflow: hidden;
+    overflow: auto;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    border: 1px solid black;
     /* only for demonstration, should be removed */
 }
 
 article.calculate {
-    float: left;
-    padding: 60px;
     width: 40%;
     background-color: grey;
     height: 90px;
     /* only for demonstration, should be removed */
-}
-
-.calculate {
-    border-style: solid;
 }
 
 #pay {
@@ -81,18 +71,40 @@ section img {
 }
 
 table,
-th,
-td {
+th {
     border: 1px solid black;
+    text-align: center;
 }
 
 table {
-    width: fit-content;
+    width: 40%;
     border-collapse: collapse;
-    margin: 10px;
+    margin: auto;
 }
 
 input[type=submit] {
-    width: 10%;
+    width: 100%;
     position: relative;
+    left: auto;
+}
+
+.submitbtn {
+    width: 50px;
+    height: 100px;
+}
+
+#stage {
+    height: 30px;
+    background-color: orange;
+}
+
+.details td {
+    border: 1px solid black;
+}
+
+.container {
+    content: "";
+    width: auto;
+    height: max-content;
+    padding: 50px;
 }

@@ -6,5 +6,6 @@
         <li><a href="RecitalConcert.php?username=<?php echo $id; ?>" >Recital</a></li>
         <li><a href="ThreaticalConcert.php?username=<?php echo $id;?>">Threatical</a></li>
         <li><a href="ClassicalConcert.php?username=<?php echo $id;?>">Classical</a></li>
+        <li><a href="homepage.php?username=<?php echo $id;?>">Homepage</a></li>
     </ul> 
 </div>
