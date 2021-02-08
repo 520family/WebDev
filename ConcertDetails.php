@@ -74,7 +74,7 @@
             for ($j = 0; $j < 10; $j++){
                 if($reservations_result = mysqli_query($link, $reservations)){
                     while($reservations_row = mysqli_fetch_array($reservations_result)){
-                        if($reservations_row["concert_id"] = $concert_id && strcmp($reservations_row["seat_id"], $seat[$i][$j]) == 0)
+                        if($reservations_row["concert_id"] == $concert_id && strcmp($reservations_row["seat_id"], $seat[$i][$j]) == 0)
                             $occupy[$i][$j] = true;
                     }
                 }
