@@ -92,13 +92,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="autstyle.css">
+    <link rel="stylesheet" type="text/css" href="./cssfile/autstyle.css">
 
 </head>
 
 <body>
 
-<?php include 'header.php'; ?>
+<?php include './cssfile/headerstyle.php'; ?>
     <section class="cover">
 
     </section>
@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Already have an account? <a href="loginpage.php">Login here</a>.</p>
         </form>
     </div>
-<?php include 'footer.php'; ?>
+<?php include './cssfile/footer.php'; ?>
 
 </body>
 

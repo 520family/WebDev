@@ -35,6 +35,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
         }
     }
+
+    if(isset($_GET["submit"])){
+        if(strcmp($_GET["submit"], "delete") == 0){
+            echo "<script>";
+            echo "window.alert('Concert Successfully Deleted');";
+            echo "window.location = './adminHomepage.php?"."username=".$_GET['username']."';";
+            echo "</script>";
+        }
+    }
 ?>
 
 <!DOCTYPE html>

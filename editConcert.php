@@ -27,7 +27,7 @@
                     header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=start_time_clash");
                     exit();
                 } elseif($row["end_time"]<=$newendTime && $row["end_time"] >= $newstartTime){
-                    header("Location: editHomepage.php?username=$id&concert_id=$concertid&submit=end_time_clash");
+                    header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=end_time_clash");
                     exit();
                 } 
             } 
@@ -62,11 +62,11 @@
         }
         
         if(empty($newname) || empty($newdetails) || empty($newdate) || empty($newstartTime) || empty($newendTime) || empty($target_file)){
-            header("Location: addNewConcert.php?username=$id&concert_id=$concertid&submit=empty");
+            header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=empty");
             exit();
         }else{
             if ($uploadOk == 0) {
-                header("Location: addNewConcert.php?username=$id&concert_id=$concertid&submit=file_upload_error");
+                header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=file_upload_error");
                 exit();
               // if everything is ok, try to upload file
             } else {
@@ -88,13 +88,12 @@
     
     $edit = "UPDATE concert SET name = '$newname', type = '$newtype', details = '$newdetails', date = '$newdate',
     start_time = '$newstartTime',
-    end_time = '$newendTime', 
-    image_path = '$target_file'
+    end_time = '$newendTime'
     WHERE id = $concertid";
     
     if(mysqli_query($link,$edit)){
         echo "Record updated successfully";
-        header("Location: adminHomepage.php?username=$id&submit=success");
+        header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=success");
         exit();
     } else {
         echo "Error updating record: " . mysqli_error($link);
@@ -104,11 +103,11 @@
 if(isset($_GET["submit"])){
     if(strcmp($_GET["submit"], "success") == 0){
         echo "<script>";
-        echo "window.alert('Insert Successfully');";
+        echo "window.alert('Successfully editted');";
         echo "window.location = './adminHomepage.php?"."username=".$_GET['username']."';";
         echo "</script>";
     }
-    else if(strcmp($_GET["submit"], "empty") == 0){
+    if(strcmp($_GET["submit"], "empty") == 0){
         echo "<script>";
         echo "window.alert('Please fill in all required fields');";
         echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."'';";

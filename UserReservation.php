@@ -35,6 +35,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
         }
     }
+    
+    if(isset($_GET["submit"])){
+        if(strcmp($_GET["submit"], "approved") == 0){
+            echo "<script>";
+            echo "window.alert('The following reservation is approved');";
+            echo "window.location = './UserReservation.php?"."username=".$_GET['username']."';";
+            echo "</script>";
+        }elseif(strcmp($_GET["submit"], "cancelled") == 0){
+            echo "<script>";
+            echo "window.alert('The following reservation is cancelled');";
+            echo "window.location = './UserReservation.php?"."username=".$_GET['username']."';";
+            echo "</script>";
+        }elseif(strcmp($_GET["submit"], "unsuccessful") == 0){
+            echo "<script>";
+            echo "window.alert('You cannot cancel a reservation which the customer has bought the ticket!');";
+            echo "window.location = './UserReservation.php?"."username=".$_GET['username']."';";
+            echo "</script>";
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>

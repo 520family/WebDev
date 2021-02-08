@@ -8,5 +8,5 @@ $reservation_id = $_GET['reservation_id'];
 
 mysqli_query($link,"UPDATE reservation SET status = 1 WHERE id='$reservation_id'");
 mysqli_close($link);
-header("Location: UserReservation.php?username=$id");
+header("Location: UserReservation.php?username=$id&submit=approved");
 ?> 

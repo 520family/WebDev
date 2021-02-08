@@ -8,5 +8,5 @@ $concert_id = $_GET['concert_id'];
 
 mysqli_query($link,"DELETE FROM concert WHERE id='$concert_id'");
 mysqli_close($link);
-header("Location: adminHomepage.php?username=$id");
+header("Location: adminHomepage.php?username=$id&submit=delete");
 ?> 

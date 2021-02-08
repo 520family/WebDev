@@ -118,9 +118,8 @@
 
 
                 <input type="submit" class="btn btn-primary" value="Login">
-
                 <span class="#"><a href="adminlogin.php">Login as Admin?</a></span>
-            </div>
+                <span class="#"><a href="registerpage.php">Register</a></span>
         </form>
 
     </div>
