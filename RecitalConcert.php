@@ -34,7 +34,7 @@ $recital_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Recital'"
                                 $img_src = $row['image_path'];
                                 $concert_id = $row['id'];
                                 
-                                echo "<a href='ConcertDetails.php?username=".$id."'&concert_id=".$concert_id."><img src=".$img_src."></a>";
+                                echo "<a href='ConcertDetails.php?username=".$id."&concert_id=".$concert_id."'><img src=".$img_src."></a>";
                             }
                         }
                     }
