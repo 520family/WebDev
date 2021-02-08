@@ -63,7 +63,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             $uploadOk = 0;
         }
 
-        if(empty($name) || empty($details) || empty($date) || empty($startTime) || empty($endTime)){
+        if(empty($name) || empty($details) || empty($date) || empty($startTime) || empty($endTime) || empty($_FILES['fileToUpload']['name'])){
             header("Location: addNewConcert.php?username=$id&submit=empty");
             exit();
         }

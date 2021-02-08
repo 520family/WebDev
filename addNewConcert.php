@@ -17,8 +17,8 @@ if(isset($_GET["submit"])){
     }
     else if(strcmp($_GET["submit"], "empty") == 0){
         echo "<script>";
-        echo "window.alert('Please fill in all required fields');";
         echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
+        echo "window.alert('Please fill in all required fields including poster');";
         echo "</script>";
     }else if(strcmp($_GET["submit"], "start_time_clash") == 0){
         echo "<script>";

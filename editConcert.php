@@ -39,7 +39,7 @@
         } 
     }
 
-    if(empty($newname) || empty($newdetails) || empty($newdate) || empty($newstartTime) || empty($newendTime) || empty($target_file)){
+    if(empty($newname) || empty($newdetails) || empty($newdate) || empty($newstartTime) || empty($newendTime) || empty($_FILES['fileToUpload']['name'])){
         header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=empty");
         exit();
     }
@@ -61,10 +61,10 @@
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" ) {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
+            $uploadOk = 1;
         }
 
-            if ($uploadOk == 0) {
+            if ($uploadOk == 1) {
                 header("Location: editConcert.php?username=$id&concert_id=$concertid&submit=file_upload_error");
                 exit();
               // if everything is ok, try to upload file
@@ -128,7 +128,7 @@ if(isset($_GET["submit"])){
     }else if(strcmp($_GET["submit"], "file_upload_error") == 0){
         echo "<script>";
         echo "window.alert('Please ensure the file you upload is an image, png/jpg/jpeg/gif type file and less than 5MB.');";
-        echo "window.location = './editConcert.php?"."username=".$_GET['username']."&concert_id=".$concertid."';";
+        echo "window.location = './editConcert.php?"."username=".$_GET['username']."concert_id=".$concertid."';";
         echo "</script>";
     } 
 }
