@@ -29,11 +29,15 @@
         }
     }
 
-    if(isset($_GET["success"])){
+    if(isset($_GET["success"]) && $_GET["success"]!=0){
         echo "<script>";
         echo "window.alert('Reservation is successful!');";
         echo "window.location = './homepage.php?"."username=".$id."';";
         echo "</script>";
+        $_SESSION["is_updated"] = false;
+        $_SESSION["selected_seats"] = null;
+        $_SESSION["price"] = null;
+
     }
     function printSeats($concert_id, $seats_row, $reservations, $link, $id){
         $x = 1;

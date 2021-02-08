@@ -18,7 +18,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         $endTime =$_POST['endTime'];
         $adminID  = $id; //hard code
         $target_dir = "image/";
-        $target_file = $target_dir.basename($_FILES['fileToUpload']['name']);
+        $target_file = $target_dir.uniqid().basename($_FILES['fileToUpload']['name']);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $checktime = "SELECT * from concert WHERE DATE(date) = '$date'";
@@ -26,36 +26,51 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         while($row = mysqli_fetch_assoc($result)){        
             if($row["name"] != $name){
                 if($startTime>=$row["start_time"] &&$startTime <=$row["end_time"]){
-                        header("Location: addNewConcert.php?username=$id&submit=empty");
+                        header("Location: addNewConcert.php?username=$id&submit=start_time_clash");
                         exit();
                 } elseif($endTime<=$row["end_time"]&& $endTime>=$row["start_time"]  ){
-                    header("Location: addNewConcert.php?username=$id&submit=empty");
+                    header("Location: addNewConcert.php?username=$id&submit=end_time_clash");
                     exit();
                 }
             } else {
-                header("Location: addNewConcert.php?username=$id&submit=empty");
+                header("Location: addNewConcert.php?username=$id&submit=concert_name_clash");
                 exit();
             }
         }
 
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                if($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+        }        
+
+        // Check file size
+        if ($_FILES["fileToUpload"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
         }
+        
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+
         if(empty($name) || empty($details) || empty($date) || empty($startTime) || empty($endTime)){
-            header("Location: addNewConcert.php?submit=empty");
+            header("Location: addNewConcert.php?username=$id&submit=empty");
             exit();
         }
         else{
             if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
+                header("Location: addNewConcert.php?username=$id&submit=file_upload_error");
+                exit();
               // if everything is ok, try to upload file
               } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {

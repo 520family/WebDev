@@ -25,10 +25,10 @@
             if($row["date" ]== "$newdate"){
                if($row["start_time"]>=$newstartTime && $row["start_time"]<=$newendTime){
 
-                    header("Location: adminHomepage.php?username=$id&submit=empty");
+                    header("Location: editConcert.php?username=$id&submit=start_time_clash");
                     exit();
                 } elseif($row["end_time"]<=$newendTime && $row["end_time"] >= $newstartTime){
-                    header("Location: adminHomepage.php?username=$id&submit=empty");
+                    header("Location: editConcert.php?username=$id&submit=end_time_clash");
                     exit();
                 } 
             } 
@@ -37,7 +37,7 @@
 
     if(!isset($_FILES["fileToUpload"])){
         $target_dir = "image/";
-        $target_file = $target_dir.basename($_FILES['fileToUpload']['name']);
+        $target_file = $target_dir.uniqid().basename($_FILES['fileToUpload']['name']);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     

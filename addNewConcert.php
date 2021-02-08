@@ -9,10 +9,41 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 $id = $_GET["username"];
 
 if(isset($_GET["submit"])){
-    echo "<script>";
-    echo "window.alert('Insert Successfully');";
-    echo "window.location = './homepage.php?"."username=".$_GET['username']."';";
-    echo "</script>";
+    if(strcmp($_GET["submit"], "success") == 0){
+        echo "<script>";
+        echo "window.alert('Insert Successfully');";
+        echo "window.location = './adminHomepage.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }
+    else if(strcmp($_GET["submit"], "empty") == 0){
+        echo "<script>";
+        echo "window.alert('Please fill in all required fields');";
+        echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "start_time_clash") == 0){
+        echo "<script>";
+        echo "window.alert('Please pick another date or start time, it is clashed with other concert.');";
+        echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "end_time_clash") == 0){
+        echo "<script>";
+        echo "window.alert('Please pick another date or end time, it is clashed with other concert.');";
+        echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "concert_name_clash") == 0){
+        echo "<script>";
+        echo "window.alert('Please pick another concert name, it is clashed with other concert.');";
+        echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }else if(strcmp($_GET["submit"], "file_upload_error") == 0){
+        echo "<script>";
+        echo "window.alert('Please ensure the file you upload is an image, png/jpg/jpeg/gif type file and less than 5MB.');";
+        echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }
+
+    
+
 }
 
 ?>
