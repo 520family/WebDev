@@ -11,7 +11,7 @@
     require_once "config.php";
     session_start();
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header("location: login.php");
+        header("location: loginpage.php");
         exit;
     }
     $id = $_GET['username'];
@@ -66,7 +66,7 @@
             array(false, false, false, false, false, false, false, false, false, false),
             array(false, false, false, false, false, false, false, false, false, false),
         );
-        echo "<form action='updateConcert.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
+        echo "<form action='editConcertpage.php?username=".$id."&concert_id=".$concert_id."' method='post' id='reservation'>"; 
         for ($i = 0; $i < 10; $i++){
             echo"<tr>"; 
             echo "<td>";

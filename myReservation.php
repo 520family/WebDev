@@ -9,7 +9,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 $id = $_GET['username'];
-$reservations = "SELECT  id, code, status, concert_id FROM reservation WHERE user_id = '$id'";
+$reservations = "SELECT  id, status, concert_id FROM reservation WHERE user_id = '$id'";
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +34,8 @@ $reservations = "SELECT  id, code, status, concert_id FROM reservation WHERE use
             <tr>
                 <th>ID</th>
                 <th>Status</th>
-                <th>Code</th>
                 <th>Concert Name</th>
+                <th>Seat Reserved</th>
                 <th>Date</th>
                 <th>Start Time</th>
                 <th>End Time</th>
@@ -47,8 +47,27 @@ $reservations = "SELECT  id, code, status, concert_id FROM reservation WHERE use
                             while($row = mysqli_fetch_array($result)){
                                 echo "<tr>";    
                                 echo "<td>" . $row['id'] . "</td>";
-                                echo "<td>" . $row['status'] . "</td>";
-                                echo "<td>" . $row['code'] . "</td>";
+                                if($row["status"] == 0){
+                                    echo "<td>Ticket pending</td>";
+                                }else{
+                                    echo "<td>Ticket bought</td>";
+                                }
+                                echo "<td>";
+                                $reservation_id = $row["id"];
+                                $seat_reserved = "SELECT seat_id FROM reservation_seat WHERE reservation_id = '$reservation_id'";
+                                if($seat_result = mysqli_query($link, $seat_reserved)){
+                                    $seat_number = mysqli_num_rows($seat_result);
+                                    while($seat_row = mysqli_fetch_array($seat_result)){
+                                        $seat_id = $seat_row["seat_id"];
+                                        if($seat_number > 1){
+                                            echo $seat_id." ,";
+                                        }else{
+                                            echo $seat_id;
+                                        }
+                                        $seat_number--;
+                                    }
+                                }
+                                echo "</td>";
                                 $concert_id = $row["concert_id"];
                                 $concerts = "SELECT name, date, start_time, end_time FROM concert WHERE id = $concert_id";
                                 if($concert_result = mysqli_query($link, $concerts)){
