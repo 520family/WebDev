@@ -150,9 +150,9 @@ if(isset($_GET["submit"])){
         <form action="<?php $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']?>" method="POST"  enctype="multipart/form-data">
             <div>
                 <label>Name</label>
-                <input type="text" name="newname" value=<?php 
+                <input type="text" name="newname" value="<?php 
                 
-                echo $row["name"]?>>
+                echo $row["name"]?>">
             </div>
             <div>
                 <label>Type</label>
