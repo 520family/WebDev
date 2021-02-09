@@ -40,6 +40,5 @@ $classical_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Classic
                     }
     ?>
     </div>
-    <script src="app.js"></script>
 </body>
 </html>

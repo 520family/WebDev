@@ -20,4 +20,4 @@ function myFunction() {
             alert("Please enter a concert name...");//empty searchBar field
         }
   }
-    </script>
+</script>

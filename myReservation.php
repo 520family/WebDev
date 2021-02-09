@@ -57,7 +57,12 @@ if(isset($_GET["delete"])){
                             while($row = mysqli_fetch_array($result)){
                                 echo "<tr>";    
                                 echo "<td>" . $row['id'] . "</td>";
-                                echo "<td>" . $row['status'] . "</td>";
+                                if($row["status"] == 0){
+                                    echo "<td>Ticket pending</td>";
+                                }else{
+                                    echo "<td>Ticket bought</td>";
+                                }
+
                                 $concert_id = $row["concert_id"];
                                 $concerts = "SELECT name, date, start_time, end_time FROM concert WHERE id = $concert_id";
                                 if($concert_result = mysqli_query($link, $concerts)){

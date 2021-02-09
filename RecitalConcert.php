@@ -40,6 +40,5 @@ $recital_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Recital'"
                     }
     ?>
     </div>
-    <script src="app.js"></script>
 </body>
 </html>

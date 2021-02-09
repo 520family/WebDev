@@ -42,6 +42,5 @@ $concerts = "SELECT  id, image_path FROM concert";
                     }
     ?>
     </div>
-    <script src="app.js"></script>
 </body>
 </html>

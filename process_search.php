@@ -41,6 +41,5 @@ $id = $_GET["username"];
                     }
     ?>
     </div>
-    <script src="app.js"></script>
 </body>
 </html>
