@@ -11,6 +11,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 $id = $_GET['username'];
 $reservations = "SELECT  id, status, concert_id FROM reservation WHERE user_id = '$id'";
 
+if(isset($_GET["delete"])){
+    if(strcmp($_GET["delete"], "success") == 0){
+        echo "<script>";
+        echo "window.alert('Reservation successfully cancelled');";
+        echo "window.location = './myReservation.php?"."username=".$_GET['username']."';";
+        echo "</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +63,22 @@ $reservations = "SELECT  id, status, concert_id FROM reservation WHERE user_id =
                                 if($concert_result = mysqli_query($link, $concerts)){
                                     while($concert_row = mysqli_fetch_array($concert_result)){
                                         echo "<td>" . $concert_row['name'] . "</td>";
+                                        echo "<td>";
+                                        $reservation_id = $row["id"];
+                                        $seat_reserved = "SELECT seat_id FROM reservation_seat WHERE reservation_id = '$reservation_id'";
+                                        if($seat_result = mysqli_query($link, $seat_reserved)){
+                                            $seat_number = mysqli_num_rows($seat_result);
+                                            while($seat_row = mysqli_fetch_array($seat_result)){
+                                                $seat_id = $seat_row["seat_id"];
+                                                if($seat_number > 1){
+                                                    echo $seat_id." ,";
+                                                }else{
+                                                    echo $seat_id;
+                                                }
+                                                $seat_number--;
+                                            }
+                                        }
+                                        echo "</td>";
                                         echo "<td>" . $concert_row['date'] . "</td>";
                                         echo "<td>" . $concert_row['start_time'] . "</td>";
                                         echo "<td>" . $concert_row['end_time'] . "</td>";

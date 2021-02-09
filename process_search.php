@@ -35,7 +35,7 @@ $id = $_GET["username"];
                             while($row = mysqli_fetch_array($result)){
                                 $img_src = $row['image_path'];
                                 $concert_id = $row['id'];
-                                echo "<a href='ConcertDetails.php?username=".$id."'&concert_id=".$concert_id."><img src=".$img_src."></a>";
+                                echo "<a href='ConcertDetails.php?username=".$id."&concert_id=".$concert_id."'><img src=".$img_src."></a>";
                             }
                         }
                     }

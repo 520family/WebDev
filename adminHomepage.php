@@ -54,7 +54,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleAdmin.css">
-    
     <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <body>

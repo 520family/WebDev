@@ -86,3 +86,19 @@ h2 {
     opacity: .9;
     z-index: -1;
 }
+
+.topnav a:link, a:visited {
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+.topnav a:hover, a:active {
+    background-color: blue;
+}
+
+.topnav a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}

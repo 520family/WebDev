@@ -98,7 +98,7 @@
 
 <body>
     <header>
-        <h2>Concert Ticketing System</h2>
+    <img class="logo" src="image/logo.png">
 
     </header>
     <section class="cover">

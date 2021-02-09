@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/concertDetails.css">
+    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <?php 
     require_once "config.php";
@@ -37,6 +38,7 @@
         $_SESSION["is_updated"] = false;
         $_SESSION["selected_seats"] = null;
         $_SESSION["price"] = null;
+        $_SESSION["seats"] = null;
 
     }
 

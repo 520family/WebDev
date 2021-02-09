@@ -23,7 +23,7 @@
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate' AND id <> '$concertid'";
+    $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate' AND id != '$concertid'";
     $result = mysqli_query($link,$checktime);
     while($row = mysqli_fetch_assoc($result)){        
         if($row["name"] != "$newname"){
@@ -61,10 +61,10 @@
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" ) {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 1;
+            $uploadOk = 0;
         }
 
-            if ($uploadOk == 1) {
+            if ($uploadOk == 0) {
                 header("Location: editConcertpage.php?username=$id&concert_id=$concertid&submit=file_upload_error");
                 exit();
               // if everything is ok, try to upload file
