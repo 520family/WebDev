@@ -124,14 +124,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     }
             ?>
         </table>
-<<<<<<< HEAD
         <?php if($_POST['searching2']==""): ?>
             <script>alert('Please enter the Reservation ID...')</script>
-=======
-
-        <?php if($_POST['searching2']==""): ?>
-        <script>alert('Please enter the Reservation ID...')</script>
->>>>>>> ad086384882a6cb56bc8c98f041ae37957aa76e7
         <?php endif; ?>
 </body>
 </html>
