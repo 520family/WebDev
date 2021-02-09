@@ -67,7 +67,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link rel="stylesheet" href="./cssfile/styleAdmin.css">
 </head>
 <body>
-    <?php include "adminHeader.html" ?>
+    <?php include "adminHeader.php" ?>
     <?php include "adminNavigation.php" ?>
     <div class="heading">
         <h3>User Reservation</h3>

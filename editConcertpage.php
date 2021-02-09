@@ -139,7 +139,7 @@ if(isset($_GET["submit"])){
     <link rel="stylesheet" href="./cssfile/styleAddNewConcert.css">
 </head>
 <body>
-    <?php include "adminHeader.html" ?>
+    <?php include "adminHeader.php" ?>
     <?php include "adminNavigation.php" ?>
     <div class="heading">
         <h3>Edit Concert</h3>
@@ -149,23 +149,22 @@ if(isset($_GET["submit"])){
         <form action="<?php $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']?>" method="POST"  enctype="multipart/form-data">
             <div>
                 <label>Name</label>
-                <input type="text" name="newname" value="<?php 
+                <input type="text" name="newname" maxlength="18" value="<?php 
                 
                 echo $row["name"]?>">
             </div>
-            <div class="option">
-                <p>Type</p>
-                <input class="checkbox" type="radio" id="Classical" name="newtype" value="Classical">
-                <label for="Classical">Classical</label><br>
-                <input class="checkbox" type="radio" id="Threatical" name="newtype" value="Threatical">
-                <label for="Threatical">Threatical</label><br>
-                <input class="checkbox" type="radio" id="Recital" name="newtype" value="Recital">
-                <label for="Recital">Recital</label>
+            <div class="opt">
+                <label>Type</label>
+                <select name="type" id="type">
+                    <option value="Classical">Classical</option>
+                    <option value="Threatical">Threatical</option>
+                    <option value="Recital">Recital</option>
+                 </select>
             </div>
             <div>
                 <label>Details</label>
                 <?php $string = $row["details"]; ?>
-                <input type="text" name="newdetails" value="<?php echo $string;?>">
+                <input type="text" name="newdetails" value="<?php echo $string;?>" maxlength="255">
             </div>
             <div>
                 <label>Date</label>
@@ -180,6 +179,8 @@ if(isset($_GET["submit"])){
                 <input type="time" name="newendTime" value=<?php echo $row["end_time"]?>>
             </div>
             <div>
+                <label>Poster</label>
+                <br>
                 <label>Select image to upload:</label>
                 <input type="file" name="fileToUpload" id="fileToUpload">     
             </div>

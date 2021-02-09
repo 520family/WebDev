@@ -112,24 +112,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="login_form">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($userid_err)) ? 'has-error' : ''; ?>">
-                <input class="input1" type="text" name="userid" placeholder="User ID">
+                <input class="input1" type="text" name="userid" placeholder="Username" maxlength="11">
                 <span class="help-block"><?php echo $userid_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <input class="input1" type="password" name="password" placeholder="Password">
+                <input class="input1" type="password" name="password" placeholder="Password" maxlength="11">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div>
-              <input class="input1" type="text" name="firstname" placeholder="First Name">
+              <input class="input1" type="text" name="firstname" placeholder="First Name" maxlength="18">
             </div>
             <div>
-              <input class="input1" type="text" name="lastname" placeholder="Last Name">
+              <input class="input1" type="text" name="lastname" placeholder="Last Name" maxlength="18">
             </div>
             <div>
-              <input class="input1" type="text" name="address" placeholder="Address">
+              <input class="input1" type="text" name="address" placeholder="Address" maxlength="80">
             </div>
             <div>
-              <input class="input1" type="text" name="phone" placeholder="Phone Number">
+              <input class="input1" type="number" name="phone" placeholder="Phone Number" maxlength="11">
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Register">

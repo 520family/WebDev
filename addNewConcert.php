@@ -56,7 +56,7 @@ if(isset($_GET["submit"])){
     <link rel="stylesheet" href="./cssfile/styleAddNewConcert.css">
 </head>
 <body>
-    <?php include "adminHeader.html" ?>
+    <?php include "adminHeader.php" ?>
     <?php include "adminNavigation.php" ?>
     <div class="heading">
         <h3>Add New Concert</h3>
@@ -65,20 +65,19 @@ if(isset($_GET["submit"])){
         <form action="addConcert.php?username=<?php echo $_GET['username']; ?>" method="POST" enctype="multipart/form-data">
         <div>
                 <label>Name</label>
-                <input type="text" name="name">
+                <input type="text" name="name" maxlength="18">
             </div>
-            <div class="option">
-                <p>Type</p>
-                <input class="checkbox" type="radio" id="Classical" name="type" value="Classical">
-                <label for="Classical">Classical</label><br>
-                <input class="checkbox" type="radio" id="Threatical" name="type" value="Threatical">
-                <label for="Threatical">Threatical</label><br>
-                <input class="checkbox" type="radio" id="Recital" name="type" value="Recital">
-                <label for="Recital">Recital</label>
+            <div class="opt">
+                <label>Type</label>
+                 <select name="type" id="type">
+                    <option value="Classical">Classical</option>
+                    <option value="Threatical">Threatical</option>
+                    <option value="Recital">Recital</option>
+                 </select>
             </div>
             <div>
                 <label>Details</label>
-                <input type="text" name="details">
+                <input type="text" name="details" maxlength="255">
             </div>
             <div>
                 <label>Date</label>
@@ -94,6 +93,7 @@ if(isset($_GET["submit"])){
             </div>
             <div>
                 <label>Poster</label>
+                <br>
                 <label>Select image to upload:</label>
                 <input type="file" name="fileToUpload" id="fileToUpload">     
             </div>
