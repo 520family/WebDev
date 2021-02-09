@@ -39,11 +39,6 @@
         } 
     }
 
-    if(empty($newname) || empty($newdetails) || empty($newdate) || empty($newstartTime) || empty($newendTime) || empty($_FILES['fileToUpload']['name'])){
-        header("Location: editConcertpage.php?username=$id&concert_id=$concertid&submit=empty");
-        exit();
-    }
-
         if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
@@ -104,11 +99,6 @@ if(isset($_GET["submit"])){
         echo "window.alert('Successfully editted');";
         echo "window.location = './adminHomepage.php?"."username=".$_GET['username']."';";
         echo "</script>";
-    }
-    if(strcmp($_GET["submit"], "empty") == 0){
-        echo "<script>";
-        echo "window.alert('Please fill in all required fields');";
-        echo "</script>";
     }else if(strcmp($_GET["submit"], "start_time_clash") == 0){
         echo "<script>";
         echo "window.alert('Please pick another date or start time, it is clashed with other concert.');";
@@ -151,7 +141,7 @@ if(isset($_GET["submit"])){
                 <label>Name</label>
                 <input type="text" name="newname" maxlength="18" value="<?php 
                 
-                echo $row["name"]?>">
+                echo $row["name"]?>" required>
             </div>
             <div class="opt">
                 <label>Type</label>
@@ -164,25 +154,25 @@ if(isset($_GET["submit"])){
             <div>
                 <label>Details</label>
                 <?php $string = $row["details"]; ?>
-                <input type="text" name="newdetails" value="<?php echo $string;?>" maxlength="255">
+                <input type="text" name="newdetails" value="<?php echo $string;?>" maxlength="255" required>
             </div>
             <div>
                 <label>Date</label>
-                <input type="date" name="newdate" value=<?php echo $row["date"]?>>
+                <input type="date" name="newdate" value=<?php echo $row["date"]?> required>
             </div> 
             <div>
                 <label>Start Time</label>
-                <input type="time" name="newstartTime" value=<?php echo $row["start_time"]?>> 
+                <input type="time" name="newstartTime" value=<?php echo $row["start_time"]?> required> 
             </div>
             <div>
                 <label>End Time</label>
-                <input type="time" name="newendTime" value=<?php echo $row["end_time"]?>>
+                <input type="time" name="newendTime" value=<?php echo $row["end_time"]?> required>
             </div>
             <div>
                 <label>Poster</label>
                 <br>
                 <label>Select image to upload:</label>
-                <input type="file" name="fileToUpload" id="fileToUpload">     
+                <input type="file" name="fileToUpload" id="fileToUpload" required>     
             </div>
             <div>
              <input type="submit" id="submit" value="Edit">

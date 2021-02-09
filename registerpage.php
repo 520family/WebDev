@@ -112,24 +112,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="login_form">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($userid_err)) ? 'has-error' : ''; ?>">
-                <input class="input1" type="text" name="userid" placeholder="Username" maxlength="11">
+                <input class="input1" type="text" name="userid" placeholder="Username" maxlength="11" required>
                 <span class="help-block"><?php echo $userid_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <input class="input1" type="password" name="password" placeholder="Password" maxlength="11">
+                <input class="input1" type="password" name="password" id="myInput" placeholder="Password" maxlength="11" required>
                 <span class="help-block"><?php echo $password_err; ?></span>
+                <input type="checkbox" onclick="myFunction()">Show Password
             </div>
             <div>
-              <input class="input1" type="text" name="firstname" placeholder="First Name" maxlength="18">
+              <input class="input1" type="text" name="firstname" placeholder="First Name" maxlength="18" required>
             </div>
             <div>
-              <input class="input1" type="text" name="lastname" placeholder="Last Name" maxlength="18">
+              <input class="input1" type="text" name="lastname" placeholder="Last Name" maxlength="18" required>
             </div>
             <div>
-              <input class="input1" type="text" name="address" placeholder="Address" maxlength="80">
+              <input class="input1" type="text" name="address" placeholder="Address" maxlength="80" required>
             </div>
             <div>
-              <input class="input1" type="number" name="phone" placeholder="Phone Number" maxlength="11">
+              <input class="input1" type="number" name="phone" placeholder="Phone Number" maxlength="11" required>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Register">
@@ -139,7 +140,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </form>
     </div>
 
-
+    <script>
+       function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        } 
+    </script>
 </body>
 
 </html>

@@ -14,12 +14,6 @@ if(isset($_GET["submit"])){
         echo "window.alert('Insert Successfully');";
         echo "window.location = './adminHomepage.php?"."username=".$_GET['username']."';";
         echo "</script>";
-    }
-    else if(strcmp($_GET["submit"], "empty") == 0){
-        echo "<script>";
-        echo "window.location = './addNewConcert.php?"."username=".$_GET['username']."';";
-        echo "window.alert('Please fill in all required fields including poster');";
-        echo "</script>";
     }else if(strcmp($_GET["submit"], "start_time_clash") == 0){
         echo "<script>";
         echo "window.alert('Please pick another date or start time, it is clashed with other concert.');";
@@ -65,7 +59,7 @@ if(isset($_GET["submit"])){
         <form action="addConcert.php?username=<?php echo $_GET['username']; ?>" method="POST" enctype="multipart/form-data">
         <div>
                 <label>Name</label>
-                <input type="text" name="name" maxlength="18">
+                <input type="text" name="name" maxlength="18" required>
             </div>
             <div class="opt">
                 <label>Type</label>
@@ -77,19 +71,19 @@ if(isset($_GET["submit"])){
             </div>
             <div>
                 <label>Details</label>
-                <input type="text" name="details" maxlength="255">
+                <input type="text" name="details" maxlength="255" required>
             </div>
             <div>
                 <label>Date</label>
-                <input type="date" name="date" >
+                <input type="date" name="date" required>
             </div> 
             <div>
                 <label>Start Time</label>
-                <input type="time" name="startTime"> 
+                <input type="time" name="startTime" required> 
             </div>
             <div>
                 <label>End Time</label>
-                <input type="time" name="endTime">
+                <input type="time" name="endTime" required>
             </div>
             <div>
                 <label>Poster</label>
@@ -98,7 +92,7 @@ if(isset($_GET["submit"])){
                 <input type="file" name="fileToUpload" id="fileToUpload">     
             </div>
             <div>
-                <input type="submit" id="submit" name="submit" value="Add">
+                <input type="submit" id="submit" name="submit" value="Add" required>
             </div>
         </form>
     </div>

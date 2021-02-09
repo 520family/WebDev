@@ -113,8 +113,9 @@
                 <input class="input1" type="text" name="username" placeholder="Username" required></input>
                 <span class="help-block"><?php echo $username_err; ?></span>
 
-                <input class="input1" type="Password" name="password" placeholder="Password" required></input>
+                <input class="input1" type="Password" name="password"  id="myInput" placeholder="Password" required></input>
                 <span class="help-block"><?php echo $password_err; ?></span>
+                <input type="checkbox" onclick="myFunction()">Show Password
 
             <div class="btn_container">
                 <input type="submit" class="btn btn-primary" value="Login">
@@ -124,7 +125,17 @@
         </form>
 
     </div>
-   
+    <script>
+       function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        } 
+    </script>
+    
 </body>
 
 

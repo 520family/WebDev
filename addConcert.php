@@ -63,11 +63,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             $uploadOk = 0;
         }
 
-        if(empty($name) || empty($details) || empty($date) || empty($startTime) || empty($endTime) || empty($_FILES['fileToUpload']['name'])){
-            header("Location: addNewConcert.php?username=$id&submit=empty");
-            exit();
-        }
-        else{
             if ($uploadOk == 0) {
                 header("Location: addNewConcert.php?username=$id&submit=file_upload_error");
                 exit();
@@ -90,7 +85,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }    
             header("Location: addNewConcert.php?username=$id&submit=success");
             exit();
-        }
     }
     else{
         header("Location: addNewConcert.php");
