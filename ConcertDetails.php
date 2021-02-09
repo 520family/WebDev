@@ -17,6 +17,7 @@
     }
     $id = $_GET['username'];
     $concert_id = $_GET["concert_id"];
+    define("VENUE", "Stadium Bukit Jalil");
     $concert = "SELECT  id,name, image_path, details, date , start_time, end_time FROM concert WHERE id = '$concert_id'";
     if($result = mysqli_query($link, $concert)){
         if(mysqli_num_rows($result) > 0){
@@ -189,6 +190,7 @@
                             echo $details."<br/>";
                             echo "<h4>Date: ".$date. "</h4>";    
                             echo "<h4>Time:  ".$start_time." - ".$end_time. "</h4>";    
+                            echo "<h4>Venue:  ".VENUE."</h4>";
                             echo "</td></tr></table>";
                             ?>
                         </section>
@@ -219,7 +221,6 @@
                         $_SESSION["total_price"] = $total_price;
                         echo "<script>
                                 has_seat = true;
-                                console.log(has_seat);
                         </script>";
                         }else{
                             echo "<tr>";

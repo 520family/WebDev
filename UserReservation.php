@@ -142,12 +142,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     }
             ?>
         </table>
-        <script>
-            function myFunction() {
-                if ($('#search222').val() == "") {
-                    alert("Please enter the Reservation ID..."); //empty searchBar field
-                }
-            }
-        </script>
+        <?php if($_POST['searching2']==""): ?>
+            <script>alert('Please enter the Reservation ID...')</script>
+        <?php endif; ?>
+
+
 </body>
 </html>

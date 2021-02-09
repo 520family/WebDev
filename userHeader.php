@@ -20,12 +20,3 @@
         </div>
     </div>
 </div>
-
-<script>
-function myFunction() {
-     if($('#search111').val()=="")
-        {
-            alert("Please enter a concert name...");//empty searchBar field
-        }
-  }
-</script>
