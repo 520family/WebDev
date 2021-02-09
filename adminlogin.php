@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Admin Login</title>
     <link rel="stylesheet" type="text/css" href="./cssfile/autstyle.css">
+    <link rel="stylesheet" type="text/css" href="./cssfile/footerstyle.css">
 <?php 
     require_once "config.php";
 
@@ -104,6 +105,8 @@
     <section class="cover">
 
     </section>
+    <?php include "footer.html"?>
+
     <div class="login_form">
         <h2 class="header">Admin Login Page</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">

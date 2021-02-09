@@ -137,7 +137,6 @@ if(isset($_GET["submit"])){
     <title>Document</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleAddNewConcert.css">
-    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <body>
     <?php include "adminHeader.html" ?>
@@ -154,9 +153,14 @@ if(isset($_GET["submit"])){
                 
                 echo $row["name"]?>">
             </div>
-            <div>
-                <label>Type</label>
-                <input type="text" name="newtype" value=<?php echo $row["type"]?>>
+            <div class="option">
+                <p>Type</p>
+                <input class="checkbox" type="radio" id="Classical" name="newtype" value="Classical">
+                <label for="Classical">Classical</label><br>
+                <input class="checkbox" type="radio" id="Threatical" name="newtype" value="Threatical">
+                <label for="Threatical">Threatical</label><br>
+                <input class="checkbox" type="radio" id="Recital" name="newtype" value="Recital">
+                <label for="Recital">Recital</label>
             </div>
             <div>
                 <label>Details</label>

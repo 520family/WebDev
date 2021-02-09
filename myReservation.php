@@ -27,9 +27,9 @@ if(isset($_GET["delete"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concert Ticketing System</title>
+    <link rel="stylesheet" href="./cssfile/footerstyle.css">
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/UserReservation.css">
-    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 
 </head>
 <body>
@@ -97,5 +97,6 @@ if(isset($_GET["delete"])){
             ?>
         </table> 
     </div>
+    <?php include "footer.html" ?>
 </body>
 </html>

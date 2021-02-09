@@ -18,9 +18,9 @@ $classical_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Classic
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concert Ticketing System</title>
+    <link rel="stylesheet" href="./cssfile/footerstyle.css">
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/style.css">
-    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 
 </head>
 <body>
@@ -40,5 +40,6 @@ $classical_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Classic
                     }
     ?>
     </div>
+    <?php include "footer.html" ?>
 </body>
 </html>

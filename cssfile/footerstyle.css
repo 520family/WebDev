@@ -1,0 +1,17 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    color: white;
+    background-color: rgba(7, 7, 7, 0.8);
+}
+
+.copyright {
+    float: right;
+}
+
+.version {
+    float: left;
+}

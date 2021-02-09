@@ -17,8 +17,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
+    <link rel="stylesheet" href="./cssfile/footerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleMyProfile.css">
-    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
     
 </head>
 <?php
@@ -30,7 +30,7 @@ $rows=mysqli_fetch_array($result)
     <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
     <div class="heading">
-        <h3>My Profile</h3>
+        <h3 class="myprofileheading">My Profile</h3>
     </div>
     <div class="mainbox">
         <table>
@@ -52,5 +52,6 @@ $rows=mysqli_fetch_array($result)
             </tr>
         </table>
     </div>
+    <?php include "footer.html"?>
 </body>
 </html>

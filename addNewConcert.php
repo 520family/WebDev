@@ -52,8 +52,8 @@ if(isset($_GET["submit"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./cssfile/headerstyle.css">
+    <link rel="stylesheet" type="text/css" href="./cssfile/footerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleAddNewConcert.css">
-    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <body>
     <?php include "adminHeader.html" ?>
@@ -67,9 +67,14 @@ if(isset($_GET["submit"])){
                 <label>Name</label>
                 <input type="text" name="name">
             </div>
-            <div>
-                <label>Type</label>
-                <input type="text" name="type">
+            <div class="option">
+                <p>Type</p>
+                <input class="checkbox" type="radio" id="Classical" name="type" value="Classical">
+                <label for="Classical">Classical</label><br>
+                <input class="checkbox" type="radio" id="Threatical" name="type" value="Threatical">
+                <label for="Threatical">Threatical</label><br>
+                <input class="checkbox" type="radio" id="Recital" name="type" value="Recital">
+                <label for="Recital">Recital</label>
             </div>
             <div>
                 <label>Details</label>
@@ -97,5 +102,6 @@ if(isset($_GET["submit"])){
             </div>
         </form>
     </div>
+    <?php include "footer.html"?>
 </body>
 </html>

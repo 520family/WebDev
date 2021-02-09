@@ -87,18 +87,29 @@ h2 {
     z-index: -1;
 }
 
-.topnav a:link, a:visited {
+.topnav a:link,
+a:visited {
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  }
+}
 
-.topnav a:hover, a:active {
+.topnav a:hover,
+a:active {
     background-color: blue;
 }
 
-.topnav a:hover, a:visited, a:link, a:active
-{
+.topnav a:hover,
+a:visited,
+a:link,
+a:active {
     text-decoration: none;
+}
+
+.top b {
+    position: absolute;
+    right: 5em;
+    top: 1em;
+    color: rgba(252, 250, 250, 0.979);
 }

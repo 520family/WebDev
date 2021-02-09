@@ -53,11 +53,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./cssfile/headerstyle.css">
+    <link rel="stylesheet" type="text/css" href="./cssfile/footerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleAdmin.css">
-    <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <body>
-    <?php include "adminHeader.html" ?>
+    <?php include "adminHeader.php" ?>
     <?php include "adminNavigation.php" ?>
     <div class="heading">
         <h3>List of Concerts</h3>
@@ -97,5 +97,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <!-- JY changed -->
         <a href="addNewConcert.php?username=<?php echo $id; ?>" button id="button" >Add new concert</a>
     </div>
+    <?php include "footer.html"?>
 </body>
 </html>
