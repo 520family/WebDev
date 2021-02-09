@@ -35,7 +35,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $user_id = trim($_POST["userid"]);
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+               $err_msg = "Oops! Something went wrong. Please try again later.";
+               echo "<script type='text/javascript'>alert('$err_msg');";
             }
 
             // Close statement
@@ -72,9 +73,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                header("location: loginpage.php");
+                $message = "Register Successfully";
+                echo "<script type='text/javascript'>alert('$message');";
+                echo 'window.location= "loginpage.php"</script>';
             } else{
-                echo "Something went wrong. Please try again later.";
+                $err_msg = "Oops! Something went wrong. Please try again later.";
+                echo "<script type='text/javascript'>alert('$err_msg');";
             }
 
             // Close statement
@@ -93,36 +97,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Register</title>
     <link rel="stylesheet" type="text/css" href="./cssfile/autstyle.css">
+    <link rel="stylesheet" type="text/css" href="./cssfile/footerstyle.css">
 
 </head>
 
 <body>
-
-<?php include './cssfile/headerstyle.php'; ?>
+    <header>
+        <img class="logo" src="image/logo.png">
+    </header>
     <section class="cover">
 
     </section>
-    <div class="form">
+    <?php include 'footer.html'; ?>
+    <div class="login_form">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($userid_err)) ? 'has-error' : ''; ?>">
-                <input type="text" name="userid" placeholder="User ID">
+                <input class="input1" type="text" name="userid" placeholder="User ID">
                 <span class="help-block"><?php echo $userid_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <input type="password" name="password" placeholder="Password">
+                <input class="input1" type="password" name="password" placeholder="Password">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div>
-              <input type="text" name="firstname" placeholder="First Name">
+              <input class="input1" type="text" name="firstname" placeholder="First Name">
             </div>
             <div>
-              <input type="text" name="lastname" placeholder="Last Name">
+              <input class="input1" type="text" name="lastname" placeholder="Last Name">
             </div>
             <div>
-              <input type="text" name="address" placeholder="Address">
+              <input class="input1" type="text" name="address" placeholder="Address">
             </div>
             <div>
-              <input type="text" name="phone" placeholder="Phone Number">
+              <input class="input1" type="text" name="phone" placeholder="Phone Number">
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Register">
@@ -131,7 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Already have an account? <a href="loginpage.php">Login here</a>.</p>
         </form>
     </div>
-<?php include './cssfile/footer.php'; ?>
+
 
 </body>
 
