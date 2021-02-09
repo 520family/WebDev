@@ -41,5 +41,8 @@ $id = $_GET["username"];
                     }
     ?>
     </div>
+    <?php if($_POST['searching']==""): ?>
+    <script>alert('Please enter the concert name...')</script>
+    <?php endif; ?>
 </body>
 </html>
