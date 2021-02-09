@@ -1,3 +1,4 @@
+
 <div class=top>
   <img class="logo" src="image/logo.png">
   <?php
@@ -14,18 +15,9 @@
               <div class="field" >
                 <input type="text"  placeholder="Search the Concert Name Here..."   id="search111" name="searching">
                 <button value="search" alt="icon" id="topIcon"><img src ='image/search.png'></button>
-                </div>       	
+                </div>
               </form>
               <div class="clear"></div>
         </div>
     </div>
 </div>
-
-<script>
-function myFunction() {
-     if($('#search111').val()=="")
-        {
-            alert("Please enter a concert name...");//empty searchBar field
-        }
-  }
-</script>
