@@ -89,10 +89,10 @@ if(isset($_GET["submit"])){
                 <label>Poster</label>
                 <br>
                 <label>Select image to upload:</label>
-                <input type="file" name="fileToUpload" id="fileToUpload">     
+                <input type="file" name="fileToUpload" id="fileToUpload" required>     
             </div>
             <div>
-                <input type="submit" id="submit" name="submit" value="Add" required>
+                <input type="submit" id="submit" name="submit" value="Add">
             </div>
         </form>
     </div>
