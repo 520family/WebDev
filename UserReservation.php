@@ -7,10 +7,6 @@ session_start();
 if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: adminlogin.php");
     exit;
-}else{
-    $user_id = $_SESSION["username"];
-    header("location: adminHomepage.php?username=$user_id");
-    exit;
 }
 
 //$concerts = "SELECT id, name, type, date, start_time, end_time FROM concert WHERE admin_id = $_GET('id')";

@@ -9,10 +9,6 @@
     if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         header("location: adminlogin.php");
         exit;
-    }else{
-        $user_id = $_SESSION["username"];
-        header("location: adminHomepage.php?username=$user_id");
-        exit;
     }
        
    if($_SERVER["REQUEST_METHOD"] == "POST"){

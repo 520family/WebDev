@@ -7,10 +7,6 @@ session_start();
 if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: loginpage.php");
     exit;
-}else{
-    $user_id = $_SESSION["username"];
-    header("location: ClassicalConcert.php?username=$user_id");
-    exit;
 }
 $id = $_GET['username'];
 $classical_concerts = "SELECT  id, image_path FROM concert WHERE type = 'Classical'";

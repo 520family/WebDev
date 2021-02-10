@@ -6,10 +6,6 @@
 if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: adminlogin.php");
     exit;
-}else{
-    $user_id = $_SESSION["username"];
-    header("location: addConcert.php?username=$user_id ");
-    exit;
 }
 
     $id = $_GET['username'];

@@ -8,10 +8,6 @@
     if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         header("location: loginpage.php");
         exit;
-    }else{
-        $user_id = $_SESSION["username"];
-        header("location: homepage.php?username=$user_id");
-        exit;
     }
 ?>
 <!DOCTYPE html>
