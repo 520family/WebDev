@@ -52,6 +52,11 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
             echo "window.alert('You cannot cancel a reservation which the customer has bought the ticket!');";
             echo "window.location = './UserReservation.php?"."username=".$_GET['username']."';";
             echo "</script>";
+        }elseif(strcmp($_GET["submit"], "alr_approve") == 0){
+            echo "<script>";
+            echo "window.alert('The reservation is already approved!');";
+            echo "window.location = './UserReservation.php?"."username=".$_GET['username']."';";
+            echo "</script>";
         }
     }
 
