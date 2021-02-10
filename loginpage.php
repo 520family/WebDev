@@ -10,10 +10,13 @@
     require_once "config.php";
 
     session_start();
- 
+    if(isset($_SESSION["username"])){
+        $id = $_SESSION["username"];        
+    }
+
     // Check if the user is already logged in, if yes then redirect him to welcome page
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: homepage.php");
+        header("location: homepage.php?username=$id");
         exit;
     }
      
@@ -62,7 +65,7 @@
                         // Bind result variables
                         mysqli_stmt_bind_result($stmt, $id, $hashed_password);
                         if(mysqli_stmt_fetch($stmt)){
-                            if(password_verify($password, $hashed_password) == 0){
+                            if(password_verify($password, $hashed_password)){
                                 // Password is correct, so start a new session
                                 session_start();
                                 
@@ -115,6 +118,7 @@
 
                 <input class="input1" type="Password" name="password"  id="myInput" placeholder="Password" required></input>
                 <span class="help-block"><?php echo $password_err; ?></span>
+                <br>
                 <input type="checkbox" onclick="myFunction()">Show Password
 
             <div class="btn_container">

@@ -11,8 +11,12 @@
 <?php 
     require_once "config.php";
     session_start();
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         header("location: loginpage.php");
+        exit;
+    }else{
+        $user_id = $_SESSION["username"];
+        header("location: homepage.php?username=$user_id");
         exit;
     }
     $id = $_GET['username'];

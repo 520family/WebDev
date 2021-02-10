@@ -5,9 +5,13 @@
     $ses_sql=mysqli_query($link,"select user_id from user where user_id='$id'");
     $row=mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $loggedin_id=$row['user_id'];
-    if(!isset($loggedin_id) || $loggedin_id==NULL) {
-        echo "Go back";
-        header("Location: loginpage.php");
+    if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: loginpage.php");
+        exit;
+    }else{
+        $user_id = $_SESSION["username"];
+        header("location: homepage.php?username=$user_id");
+        exit;
     }
 ?>
 <!DOCTYPE html>

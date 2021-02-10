@@ -3,8 +3,12 @@
     require_once "config.php";
     session_start();
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: adminlogin.php");
+    exit;
+}else{
+    $user_id = $_SESSION["username"];
+    header("location: addConcert.php?username=$user_id ");
     exit;
 }
 

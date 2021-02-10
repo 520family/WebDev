@@ -6,8 +6,12 @@
     $result = $link->query($sql);
     $row = $result->fetch_assoc();
     // Check if the user is already logged in, if yes then redirect him to welcome page
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: adminHomepage.php");
+    if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: adminlogin.php");
+        exit;
+    }else{
+        $user_id = $_SESSION["username"];
+        header("location: adminHomepage.php?username=$user_id");
         exit;
     }
        
