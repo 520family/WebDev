@@ -133,6 +133,7 @@ if(isset($_GET["submit"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./cssfile/footerstyle.css">
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/styleAddNewConcert.css">
 </head>
@@ -186,7 +187,9 @@ if(isset($_GET["submit"])){
              <input type="submit" id="submit" value="Edit">
             </div>  
         </form>
+        
    
     </div>
+    <?php include "footer.html"?>
 </body>
 </html>

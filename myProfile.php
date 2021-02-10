@@ -26,31 +26,34 @@ $sql= "select * FROM user where user_id='$loggedin_id'";
 $result=mysqli_query($link,$sql);
 $rows=mysqli_fetch_array($result)
 ?>
+
 <body>
     <?php include "userHeader.php" ?>
     <?php include "userNavigation.php" ?>
-    <div class="heading">
-        <h3 class="myprofileheading">My Profile</h3>
-    </div>
-    <div class="mainbox">
-        <table>
-            <tr>
-                <td>First Name</td>
-                <td class="content"><?php echo $rows['first_name']; ?></td>
-            </tr>
-            <tr>
-                <td>Last Name</td>
-                <td class="content"><?php echo $rows['last_name']; ?></td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td class="content"><?php echo $rows['address']; ?></td>
-            </tr>
-            <tr>
-                <td>Phone Number</td>
-                <td class="content"><?php echo $rows['phone_num']; ?></td>
-            </tr>
-        </table>
+    <div class="images">
+        <div class="heading">
+            <h3 class="myprofileheading">My Profile</h3>
+        </div>
+        <div class="mainbox">
+            <table>
+                <tr>
+                    <td>First Name</td>
+                    <td class="content"><?php echo $rows['first_name']; ?></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td class="content"><?php echo $rows['last_name']; ?></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td class="content"><?php echo $rows['address']; ?></td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td class="content"><?php echo $rows['phone_num']; ?></td>
+                </tr>
+            </table>
+        </div>
     </div>
     <?php include "footer.html"?>
 </body>
