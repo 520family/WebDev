@@ -31,6 +31,12 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 } elseif($endTime<=$row["end_time"]&& $endTime>=$row["start_time"]  ){
                     header("Location: addNewConcert.php?username=$id&submit=end_time_clash");
                     exit();
+                } elseif($row["start_time"]>=$startTime && $row["start_time"]<=$endTime) {
+                    header("Location: addNewConcert.php?username=$id&submit=end_time_clash");
+                    exit();
+                } elseif($row["end_time"]>=$startTime && $row["end_time"]<=$endTime){
+                    header("Location: addNewConcert.php?username=$id&submit=end_time_clash");
+                    exit();
                 }
             } else {
                 header("Location: addNewConcert.php?username=$id&submit=concert_name_clash");

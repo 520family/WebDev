@@ -6,6 +6,7 @@
     $result = $link->query($sql);
     $row = $result->fetch_assoc();
     // Check if the user is already logged in, if yes then redirect him to welcome page
+    session_start();
     if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         header("location: adminlogin.php");
         exit;
@@ -13,7 +14,7 @@
        
    if($_SERVER["REQUEST_METHOD"] == "POST"){
     $newname = $_POST["newname"];
-    $newtype = $_POST["newtype"];
+    $newtype = $_POST["type"];
     $newdetails = $_POST["newdetails"];
     $newdate = $_POST["newdate"];
     $newstartTime = $_POST["newstartTime"];
@@ -23,20 +24,27 @@
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate' AND id != '$concertid'";
+    $checktime = "SELECT * from concert WHERE DATE(date) = '$newdate' AND id != $concertid";
     $result = mysqli_query($link,$checktime);
     while($row = mysqli_fetch_assoc($result)){        
-        if($row["name"] != "$newname"){
-            if($row["date" ]== "$newdate"){
-               if($row["start_time"]>=$newstartTime && $row["start_time"]<=$newendTime){
-                    header("Location: editConcertpage.php?username=$id&concert_id=$concertid&submit=start_time_clash");
+        if($row["name"] !=  "$newname"){
+            if($startTime>=$row["start_time"] &&$startTime <=$row["end_time"]){
+                    header("Location: addNewConcert.php?username=$id&submit=start_time_clash");
                     exit();
-                } elseif($row["end_time"]<=$newendTime && $row["end_time"] >= $newstartTime){
-                    header("Location: editConcertpage.php?username=$id&concert_id=$concertid&submit=end_time_clash");
-                    exit();
-                } 
-            } 
-        } 
+            } elseif($endTime<=$row["end_time"]&& $endTime>=$row["start_time"]  ){
+                header("Location: addNewConcert.php?username=$id&submit=end_time_clash");
+                exit();
+            } elseif($row["start_time"]>=$startTime && $row["start_time"]<=$endTime) {
+                header("Location: addNewConcert.php?username=$id&submit=end_time_clash");
+                exit();
+            } elseif($row["end_time"]>=$startTime && $row["end_time"]<=$endTime){
+                header("Location: addNewConcert.php?username=$id&submit=end_time_clash");
+                exit();
+            }
+        } else {
+            header("Location: addNewConcert.php?username=$id&submit=concert_name_clash");
+            exit();
+        }
     }
 
         if($check !== false) {
