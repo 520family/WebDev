@@ -9,7 +9,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
 $id = $_GET['username'];
-$reservations = "SELECT  id, status, concert_id FROM reservation WHERE user_id = '$id'";
+$reservations = "SELECT  id, status, concert_id, total_price FROM reservation WHERE user_id = '$id'";
 
 if(isset($_GET["delete"])){
     if(strcmp($_GET["delete"], "success") == 0){
@@ -48,6 +48,7 @@ if(isset($_GET["delete"])){
                 <th>Date</th>
                 <th>Start Time</th>
                 <th>End Time</th>
+                <th>Total Price</th>
                 <th>Cancel Reservation</th>
             </tr>
            <?php  
@@ -89,6 +90,7 @@ if(isset($_GET["delete"])){
                                         echo "<td>" . $concert_row['end_time'] . "</td>";
                                     }
                                 }
+                                echo "<td>RM".$row['total_price']."</td>";
                                 echo "<td><a href='cancelReservation.php?username=".$id."&reservation_id=".$row['id']."'><button><img src ='image/cancel.png'></button></a></td>";
                                 echo "<tr>";
                             }

@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 //$concerts = "SELECT id, name, type, date, start_time, end_time FROM concert WHERE admin_id = $_GET('id')";
     $id = $_GET["username"];
-    $reservations = "SELECT id, user_id, status, concert_id FROM reservation";
+    $reservations = "SELECT id, user_id, status, concert_id, total_price FROM reservation";
 
     if(isset($_POST["id"]) && !empty($_POST["id"])){
         $concert_id = $
@@ -98,6 +98,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                     <th>Date</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Total Price</th>
                     <th>Cancel</th>
                     <th>Approve</th>
                 </tr>
@@ -140,6 +141,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                                             echo "<td>" . $concert_row['end_time'] . "</td>";
                                         }
                                     }
+                                    echo "<td>RM".$row['total_price']."</td>";
                                     echo "<td><a href='adminCancelReservation.php?username=".$id."&reservation_id=".$row['id']."'><button><img src ='image/cancel.png'></button></a></td>";
                                     echo "<td><a href='approveReservation.php?username=".$id."&reservation_id=".$row['id']."'><button><img src ='image/approve.png'></button></a></td>";
                                     echo "<tr>";

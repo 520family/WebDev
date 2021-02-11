@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./cssfile/headerstyle.css">
     <link rel="stylesheet" href="./cssfile/concertDetails.css">
+    <link rel="stylesheet" href="./cssfile/footerstyle.css">
     <a href="logout.php" class="logout-button"><img src="./image/logout.png"></a>
 </head>
 <?php 
@@ -239,7 +240,6 @@
                     </td>
             </tr>
     </div>
-
-
+    <?php include "footer.html"?>
 </body>
 </html>
