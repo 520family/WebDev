@@ -3,7 +3,7 @@
     require_once "config.php";
     session_start();
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
     header("location: adminlogin.php");
     exit;
 }
@@ -80,13 +80,13 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                   echo "Sorry, there was an error uploading your file.";
                 }
               }
-            $sql = "INSERT INTO concert(name, type, date, start_time, end_time, admin_id, image_path)VALUES(?, ?, ?, ?, ?, ?, ?);";
+            $sql = "INSERT INTO concert(name, type, details, date, start_time, end_time, admin_id, image_path)VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = mysqli_stmt_init($link);
             if(!mysqli_stmt_prepare($stmt, $sql)){
                 echo "SQL error";
                 exit();
             }else{
-                mysqli_stmt_bind_param($stmt, "sssssss", $name, $type, $date, $startTime, $endTime, $adminID, $target_file);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $name, $type, $details, $date, $startTime, $endTime, $adminID, $target_file);
                 mysqli_stmt_execute($stmt);
             }    
             header("Location: addNewConcert.php?username=$id&submit=success");

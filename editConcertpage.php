@@ -7,7 +7,7 @@
     $row = $result->fetch_assoc();
     // Check if the user is already logged in, if yes then redirect him to welcome page
     session_start();
-    if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
         header("location: adminlogin.php");
         exit;
     }

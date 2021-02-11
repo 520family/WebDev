@@ -5,7 +5,7 @@
     $ses_sql=mysqli_query($link,"select user_id from user where user_id='$id'");
     $row=mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $loggedin_id=$row['user_id'];
-    if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
         header("location: loginpage.php");
         exit;
     }
